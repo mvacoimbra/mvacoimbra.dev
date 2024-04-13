@@ -1,7 +1,12 @@
+import Navbar from './components/Navbar';
+import Hero from './components/Hero';
+
 function App() {
   return (
     <>
-      <h1 className="text-red-500">VITE+REACT_TAILWIND</h1>
+      <Navbar />
+      <Hero />
+      <div className="h-[1000px] w-full bg-black" />
     </>
   );
 }

@@ -2,5 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Custom CSS */
+
 :root {
+  font-weight: 300;
+}
+
+.text-glow:hover {
+  text-shadow: 0 0 10px #fff;
+}
+
+.text-green-glow {
+  text-shadow: 0 0 5px #1efca3;
 }
