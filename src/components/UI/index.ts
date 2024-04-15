@@ -1,3 +1,4 @@
 import Section from './Section';
+import FaIcon from './FaIcon';
 
-export { Section };
+export { Section, FaIcon };

@@ -7,7 +7,10 @@ export type SectionProps = PropsWithChildren<{
 
 export default function Section({ id, className, children }: SectionProps) {
   return (
-    <section id={id} className={`${className} py-3 px-[100px] relative`}>
+    <section
+      id={id}
+      className={`${className} py-3 px-[100px] relative max-sm:px-[20px]`}
+    >
       {children}
     </section>
   );
