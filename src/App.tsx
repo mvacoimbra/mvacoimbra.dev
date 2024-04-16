@@ -1,6 +1,8 @@
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
+import Tools from './components/Tools';
+// import ToolSlider from './components/Tools/ToolSlider';
 
 function App() {
   return (
@@ -8,6 +10,8 @@ function App() {
       <Navbar />
       <Hero />
       <About />
+      <Tools />
+      <div className="w-full h-screen bg-synth-neutral1" />
     </>
   );
 }

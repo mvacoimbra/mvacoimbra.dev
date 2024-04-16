@@ -6,6 +6,14 @@ export default {
       general: ['Ubuntu', 'sans-serif'],
     },
     extend: {
+      backgroundImage: {
+        'figma-gradient':
+          'linear-gradient(135deg, #FF3D00 0%, #FF7361 25%, #B659FF 50%, #00BCFF 75%, #00CF7F 100%)',
+        'html-gradient':
+          'linear-gradient(135deg, #E34F26 50.07%, #EF642A 50.07%)',
+        'react-gradient':
+          'linear-gradient(135deg, #222 25.31%, #61DAFB 79.59%);',
+      },
       colors: {
         synth: {
           green1: '#1EFCA3',

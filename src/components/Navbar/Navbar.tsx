@@ -25,7 +25,7 @@ export default function Navbar() {
         >
           <FaIcon style="solid" name="bars" className="text-4xl text-white" />
         </button>
-        <ul className="max-sm:hidden flex gap-12">
+        <ul className="max-sm:hidden flex gap-12 max-lg:gap-5">
           {links.map((link) => (
             <li key={link.sectionId}>
               <NavlinkScroll sectionId={link.sectionId} label={link.label} />
@@ -34,7 +34,7 @@ export default function Navbar() {
         </ul>
       </nav>
       {isOpen && (
-        <div className="fixed flex justify-center items-center top-0 left-0 z-40 w-full h-screen bg-black bg-opacity-50 backdrop-blur-md">
+        <menu className="fixed flex justify-center items-center top-0 left-0 z-40 w-full h-screen bg-black bg-opacity-50 backdrop-blur-md">
           <ul className="flex flex-col justify-center items-center gap-3">
             {links.map((link) => (
               <li key={link.sectionId}>
@@ -42,7 +42,7 @@ export default function Navbar() {
               </li>
             ))}
           </ul>
-        </div>
+        </menu>
       )}
     </header>
   );

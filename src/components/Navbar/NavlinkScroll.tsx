@@ -13,7 +13,9 @@ export default function NavlinkScroll({
 
   return (
     <button onClick={() => scrollToSection(sectionId)} className="text-glow">
-      <span className="text-white font-light text-3xl">{label}</span>
+      <span className="text-white font-light text-3xl max-lg:text-2xl max-md:text-xl">
+        {label}
+      </span>
     </button>
   );
 }
