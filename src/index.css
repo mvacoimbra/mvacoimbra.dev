@@ -6,6 +6,15 @@
 
 :root {
   font-weight: 300;
+  /* hide scroll */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+  background-color: black;
+}
+
+/* hide scroll */
+:root::-webkit-scrollbar {
+  display: none;
 }
 
 .text-glow:hover {
@@ -15,3 +24,11 @@
 .text-green-glow {
   text-shadow: 0 0 5px #1efca3;
 }
+
+/* .devicon-devicon-plain {
+  max-width: 2em;
+}
+
+.devicon-devicon-plain path {
+  fill: #4691f6;
+} */
