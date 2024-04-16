@@ -14,7 +14,7 @@ export default function Hero() {
       </div>
       <img
         src="https://res.cloudinary.com/mvacoimbra/image/upload/v1713047218/mvacoimbra-porfolio/V.png"
-        className={`w-screen h-1/2 absolute bottom-0 left-0`}
+        className={`w-screen h-1/2 absolute bottom-0 left-0 pointer-events-none`}
       ></img>
     </Section>
   );
