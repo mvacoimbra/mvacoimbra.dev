@@ -1,14 +1,19 @@
-export type NavlinkScrollProps = {
+import { PropsWithChildren } from 'react';
+
+export type NavlinkScrollProps = PropsWithChildren<{
   sectionId: string;
-  label: string;
+  label?: string;
   extraFunction?: () => void;
-};
+  className?: string;
+}>;
 
 export default function NavlinkScroll({
   sectionId = '',
-  label = 'ScrollLink',
+  label,
   extraFunction = () => {},
-}) {
+  children = null,
+  className,
+}: NavlinkScrollProps) {
   const scrollToSection = (sectionId: string) => {
     document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
   };
@@ -19,9 +24,10 @@ export default function NavlinkScroll({
         scrollToSection(sectionId);
         extraFunction();
       }}
-      className="text-glow"
+      className={`${className ? className : 'text-glow'}`}
     >
-      <span className="text-white font-light">{label}</span>
+      {label && <span className="text-white font-light">{label}</span>}
+      {children}
     </button>
   );
 }

@@ -24,6 +24,10 @@
 .text-green-glow {
   text-shadow: 0 0 5px #1efca3;
 }
+
+.slick-slide.slick-center {
+  transform: scale(1.1);
+}
 /* .figma-gradient {
 background: linear-gradient(135deg, #FF3D00 0%, #FF7361 25%, #B659FF 50%, #00BCFF 75%, #00CF7F 100%);
 } */

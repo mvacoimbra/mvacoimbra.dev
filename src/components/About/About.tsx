@@ -15,13 +15,13 @@ export default function About() {
         <div className="text-white text-base max-w-[820px] ">
           <p>
             sou Marcos Coimbra, desenvolvedor web entusiasta da solução de
-            problemas. Tenho experiência no design, prototipagem e
+            problemas. Tenho experiência em design, prototipagem e
             desenvolvimento de aplicações web e mobile e atualmente faço parte
             da equipe{' '}
             <strong className="text-synth-green1">Bunch Software</strong>.
           </p>
           <p>
-            Desenvolvimento é minha verdadeira vocação, aprecio o desafio
+            Desenvolvimento é minha verdadeira vocação e apreciar o desafio
             incessante de resolver problemas que para mim é como um jogo de
             quebra-cabeças de níveis infinitos.
           </p>

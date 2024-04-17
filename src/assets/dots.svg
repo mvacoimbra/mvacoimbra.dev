@@ -1,0 +1,24 @@
+<svg width="110" height="10" viewBox="0 0 110 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_813_193)">
+<mask id="mask0_813_193" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="110" height="10">
+<circle cx="105" cy="5" r="5" fill="#D9D9D9"/>
+<circle cx="85" cy="5" r="5" fill="#D9D9D9"/>
+<circle cx="65" cy="5" r="5" fill="#D9D9D9"/>
+<circle cx="45" cy="5" r="5" fill="#D9D9D9"/>
+<circle cx="25" cy="5" r="5" fill="#D9D9D9"/>
+<circle cx="5" cy="5" r="5" fill="#D9D9D9"/>
+</mask>
+<g mask="url(#mask0_813_193)">
+<rect width="110" height="10" fill="url(#paint0_linear_813_193)"/>
+</g>
+</g>
+<defs>
+<linearGradient id="paint0_linear_813_193" x1="0" y1="5" x2="110" y2="5" gradientUnits="userSpaceOnUse">
+<stop stop-color="#FAFAFA"/>
+<stop offset="1" stop-color="#858585"/>
+</linearGradient>
+<clipPath id="clip0_813_193">
+<rect width="110" height="10" fill="white"/>
+</clipPath>
+</defs>
+</svg>

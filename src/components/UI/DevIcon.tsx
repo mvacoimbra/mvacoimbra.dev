@@ -1,3 +1,5 @@
+import Background from './Background';
+
 export type DevIconProps = {
   icon: string;
   iconSize?:
@@ -37,10 +39,10 @@ export default function DevIcon({
           style={{ width: size, height: size }}
           className={`rounded-lg overflow-hidden relative flex justify-center items-center`}
         >
-          <i className={`devicon-${icon} ${iconSize} ${textColor} z-20`}></i>
-          <div
-            className={`${bgColor} w-full h-full absolute top-0 left-0 -z-10`}
-          />
+          {/* background */}
+          <Background bgCss={bgColor} />
+          {/* icon */}
+          <i className={`devicon-${icon} ${iconSize} ${textColor} z-0`}></i>
         </div>
         {label && <span className="text-black text-xs">{label}</span>}
       </figure>

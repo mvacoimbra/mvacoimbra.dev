@@ -2,7 +2,7 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
 import Tools from './components/Tools';
-// import ToolSlider from './components/Tools/ToolSlider';
+import Services from './components/Services';
 
 function App() {
   return (
@@ -11,6 +11,7 @@ function App() {
       <Hero />
       <About />
       <Tools />
+      <Services />
       <div className="w-full h-screen bg-synth-neutral1" />
     </>
   );
