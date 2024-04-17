@@ -14,8 +14,18 @@ export default function NavlinkScroll({
   children = null,
   className,
 }: NavlinkScrollProps) {
+  // Function to scroll to a section by its id
   const scrollToSection = (sectionId: string) => {
-    document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
+    const element = document.getElementById(sectionId);
+    if (element) {
+      const rect = element.getBoundingClientRect();
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      const offsetPosition = rect.top + scrollTop - 100; // Subtract 100 for the offset
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth',
+      });
+    }
   };
 
   return (
