@@ -30,13 +30,13 @@ export default function Portfolio() {
         </p>
         <div className='flex gap-5 max-sm:justify-evenly max-sm:w-full'>
           <button
-            className='px-4 border-2 border-black rounded-full hover:bg-black hover:text-synth-green1'
+            className='px-4 border-2 border-black active:bg-black active:text-synth-green1 rounded-full sm:hover:bg-black sm:hover:text-synth-green1'
             onClick={() => previous()}
           >
             <FaIcon name='arrow-left' style='solid' />
           </button>
           <button
-            className='px-4 border-2 border-black rounded-full hover:bg-black hover:text-synth-green1'
+            className='px-4 border-2 border-black rounded-full active:bg-black active:text-synth-green1 sm:hover:bg-black sm:hover:text-synth-green1'
             onClick={() => next()}
           >
             <FaIcon name='arrow-right' style='solid' />

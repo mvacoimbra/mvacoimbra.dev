@@ -15,9 +15,6 @@ export default function PortfolioCard({
   link,
 }: PortfolioCardProps) {
   const [isHovered, setIsHovered] = useState(false);
-  const handleTouch = () => {
-    setIsHovered((prev) => !prev);
-  };
   return (
     <figure
       className='h-[500px]'
@@ -26,7 +23,13 @@ export default function PortfolioCard({
     >
       <div className='flex justify-center items-start h-full relative'>
         <button
-          onClick={() => handleTouch()}
+          onClick={() => {
+            if (isHovered) {
+              setIsHovered(false);
+            } else {
+              setIsHovered(true);
+            }
+          }}
           className='hidden max-sm:flex absolute top-5 z-30 text-4xl text-white'
         >
           <FaIcon
