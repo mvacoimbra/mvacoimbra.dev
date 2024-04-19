@@ -34,7 +34,7 @@ export default function DevIcon({
 
   if (size > 0) {
     return (
-      <figure className="flex flex-col items-center w-fit gap-1">
+      <figure className='flex flex-col items-center w-fit gap-1'>
         <div
           style={{ width: size, height: size }}
           className={`rounded-lg overflow-hidden relative flex justify-center items-center`}
@@ -44,7 +44,7 @@ export default function DevIcon({
           {/* icon */}
           <i className={`devicon-${icon} ${iconSize} ${textColor} z-0`}></i>
         </div>
-        {label && <span className="text-black text-xs">{label}</span>}
+        {label && <span className='text-black text-xs'>{label}</span>}
       </figure>
     );
   } else {

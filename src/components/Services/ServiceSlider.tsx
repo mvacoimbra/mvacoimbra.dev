@@ -32,9 +32,9 @@ const slides: ServiceCardProps[] = [
 
 export default function ServiceSlider() {
   return (
-    <div className="flex justify-around gap-y-10 flex-wrap">
+    <div className='flex justify-around gap-y-10 flex-wrap mb-10'>
       {slides.map((item, index) => (
-        <ServiceCard key={index} {...item} className="hover:scale-105" />
+        <ServiceCard key={index} {...item} className='hover:scale-105' />
       ))}
     </div>
   );

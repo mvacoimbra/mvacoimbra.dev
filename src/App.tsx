@@ -3,6 +3,7 @@ import Hero from './components/Hero';
 import About from './components/About';
 import Tools from './components/Tools';
 import Services from './components/Services';
+import Portfolio from './components/Portfolio';
 
 function App() {
   return (
@@ -12,7 +13,8 @@ function App() {
       <About />
       <Tools />
       <Services />
-      <div className="w-full h-screen bg-synth-neutral1" />
+      <Portfolio />
+      <div className='w-full h-screen bg-synth-neutral1' />
     </>
   );
 }
