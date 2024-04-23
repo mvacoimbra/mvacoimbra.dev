@@ -19,7 +19,7 @@ const slides: PortfolioCardProps[] = [
   },
   {
     title: 'Bunch Software',
-    tags: ['Landing Page', 'Next.js, Storybook'],
+    tags: ['Landing Page', 'Next.js', 'Storybook'],
     img: 'https://res.cloudinary.com/mvacoimbra/image/upload/v1713496010/mvacoimbra-porfolio/portfolio-bunchsoftware.png',
     link: 'https://bunchsoftware.dev',
   },
