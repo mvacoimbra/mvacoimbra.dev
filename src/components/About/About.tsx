@@ -7,7 +7,8 @@ export default function About() {
       className="bg-black flex gap-16 max-sm:gap-5 justify-center items-center flex-wrap 'py-3 px-[100px] relative max-sm:px-[20px] overflow-hidden'"
     >
       <img
-        className='w-[312px] h-[312px]'
+        alt='Marcos Coimbra profile picture'
+        className='pointer-events-none w-[312px] h-[312px]'
         src='https://res.cloudinary.com/mvacoimbra/image/upload/v1713229251/mvacoimbra-porfolio/profile-pic.png'
       />
       <div>

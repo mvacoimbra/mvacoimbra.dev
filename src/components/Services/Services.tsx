@@ -8,7 +8,13 @@ type DotsProps = {
 
 const Dots = ({ reverse = false }: DotsProps) => {
   const direction = reverse ? 'rotate-180' : '';
-  return <img src={dots} className={`${direction} w-fit h-fit max-sm:w-20`} />;
+  return (
+    <img
+      alt='dots'
+      src={dots}
+      className={`${direction} w-fit h-fit max-sm:w-20`}
+    />
+  );
 };
 
 export default function Services() {

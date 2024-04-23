@@ -28,14 +28,22 @@
 .slick-slide.slick-center {
   transform: scale(1.1);
 }
-/* .figma-gradient {
-background: linear-gradient(135deg, #FF3D00 0%, #FF7361 25%, #B659FF 50%, #00BCFF 75%, #00CF7F 100%);
-} */
 
-/* .devicon-devicon-plain {
-  max-width: 2em;
+@keyframes floating {
+  0% {
+    transform: translate(-300px, -300px);
+  }
+  25% {
+    transform: translate(500px, -300px);
+  }
+  50% {
+    transform: translate(1000px, 500px);
+  }
+  100% {
+    transform: translate(1500px, -500px);
+  }
 }
 
-.devicon-devicon-plain path {
-  fill: #4691f6;
-} */
+.floating {
+  animation: floating 20s ease-in-out infinite alternate;
+}

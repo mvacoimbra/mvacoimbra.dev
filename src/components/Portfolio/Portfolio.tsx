@@ -47,6 +47,7 @@ export default function Portfolio() {
         <PortfolioSlider innerRef={setSliderRef} />
       </div>
       <img
+        alt='transition tilt'
         src='https://res.cloudinary.com/mvacoimbra/image/upload/v1713492130/mvacoimbra-porfolio/transition-tilt.png'
         className='w-full absolute top-0 left-0'
       />

@@ -4,6 +4,7 @@ import About from './components/About';
 import Tools from './components/Tools';
 import Services from './components/Services';
 import Portfolio from './components/Portfolio';
+import Contact from './components/Contact';
 
 function App() {
   return (
@@ -14,7 +15,7 @@ function App() {
       <Tools />
       <Services />
       <Portfolio />
-      <div className='w-full h-screen bg-synth-neutral1' />
+      <Contact />
     </>
   );
 }

@@ -13,6 +13,7 @@ export default function Hero() {
         <h1 className='text-green-glow text-3xl'>Web Developer</h1>
       </div>
       <img
+        alt='V shape'
         src='https://res.cloudinary.com/mvacoimbra/image/upload/v1713047218/mvacoimbra-porfolio/V.png'
         className={`w-screen h-1/2 absolute bottom-0 left-0 pointer-events-none`}
       ></img>
