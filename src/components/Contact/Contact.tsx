@@ -41,10 +41,22 @@ export default function Contact() {
 
       const keyframesTwo = `
       @keyframes floating2 {
-        0% { transform: translate(${Math.random() * parentWidth}px, ${Math.random() * parentHeight}px) }
-        25% { transform: translate(${Math.random() * parentWidth}px, ${Math.random() * parentHeight}px) }
-        50% { transform: translate(${Math.random() * parentWidth}px, ${Math.random() * parentHeight}px) }
-        100% { transform: translate(${Math.random() * parentWidth}px, ${Math.random() * parentHeight}px) }
+        0% {
+          transform: translate(${Math.random() * parentWidth}px, ${Math.random() * parentHeight}px);
+           scale: 0.5;
+        }
+        25% {
+          transform: translate(${Math.random() * parentWidth}px, ${Math.random() * parentHeight}px);
+          scale: 1;
+        }
+        50% {
+          transform: translate(${Math.random() * parentWidth}px, ${Math.random() * parentHeight}px);
+          scale: 1.5;
+        }
+        100% {
+          transform: translate(${Math.random() * parentWidth}px, ${Math.random() * parentHeight}px);
+          scale: 0.5;
+        }
       }
     `;
 
@@ -90,15 +102,15 @@ export default function Contact() {
       {/* floating dots */}
       <div
         ref={parentDiv}
-        className='-z-10 absolute top-0 left-0 w-full h-full'
+        className='-z-10 absolute top-0 left-0 w-full h-full pointer-events-none'
       >
         <div
           ref={floatingDiv}
-          className='pointer-events-none blur-[150px] rounded-full w-[500px] h-[500px] bg-opacity-30 bg-synth-green1 absolute -top-0 -left-0'
+          className='blur-[150px] rounded-full w-[500px] h-[500px] bg-opacity-30 bg-synth-green1 absolute -top-0 -left-0'
         />
         <div
           ref={floatingDivTwo}
-          className='pointer-events-none blur-[150px] rounded-full w-[500px] h-[500px] bg-opacity-30 bg-synth-green1 absolute -top-0 -left-0'
+          className='blur-[150px] rounded-full w-[500px] h-[500px] bg-opacity-30 bg-synth-green1 absolute -top-0 -left-0'
         />
       </div>
       {/* BG */}

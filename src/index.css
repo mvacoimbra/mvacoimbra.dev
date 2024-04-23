@@ -28,27 +28,3 @@
 .slick-slide.slick-center {
   transform: scale(1.1);
 }
-
-@keyframes floating {
-  0% {
-    transform: translate(-300px, -300px);
-  }
-  25% {
-    transform: translate(500px, -300px);
-  }
-  50% {
-    transform: translate(1000px, 500px);
-  }
-  100% {
-    transform: translate(1500px, -500px);
-  }
-}
-
-.floating {
-  animation: floating 20s ease-in-out infinite alternate;
-}
-
-.divSticky {
-  position: -webkit-sticky;
-  position: sticky;
-}
