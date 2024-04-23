@@ -47,3 +47,8 @@
 .floating {
   animation: floating 20s ease-in-out infinite alternate;
 }
+
+.divSticky {
+  position: -webkit-sticky;
+  position: sticky;
+}

@@ -59,7 +59,7 @@ export default function Contact() {
   // ----------------------
   return (
     <Section id='contact'>
-      <div ref={parentDiv}>
+      <div>
         <h3 className='text-center text-6xl text-synth-green1 my-9'>Contato</h3>
         <div className='grid grid-cols-5 max-xl:flex flex-col max-xl:gap-12'>
           <div className='col-span-2 gap-12 flex flex-col justify-center max-xl:items-center'>
@@ -83,19 +83,26 @@ export default function Contact() {
             <ContactForm />
           </div>
         </div>
-        <footer className='flex justify-center items-center py-6 mt-12'>
-          <p className='text-white text-sm'>Copyright © 2024 mvacoimbra.dev</p>
-        </footer>
-        {/* floating dots */}
+      </div>
+      <footer className='flex justify-center items-center py-6 mt-12'>
+        <p className='text-white text-sm'>Copyright © 2024 mvacoimbra.dev</p>
+      </footer>
+      {/* floating dots */}
+      <div
+        ref={parentDiv}
+        className='-z-10 absolute top-0 left-0 w-full h-full'
+      >
         <div
           ref={floatingDiv}
-          className='pointer-events-none blur-[150px] rounded-full w-[500px] h-[500px] bg-opacity-30 bg-synth-green1 absolute -top-0 -left-0 -z-50'
+          className='pointer-events-none blur-[150px] rounded-full w-[500px] h-[500px] bg-opacity-30 bg-synth-green1 absolute -top-0 -left-0'
         />
         <div
           ref={floatingDivTwo}
-          className='pointer-events-none blur-[150px] rounded-full w-[500px] h-[500px] bg-opacity-30 bg-synth-green1 absolute -top-0 -left-0 -z-50'
+          className='pointer-events-none blur-[150px] rounded-full w-[500px] h-[500px] bg-opacity-30 bg-synth-green1 absolute -top-0 -left-0'
         />
       </div>
+      {/* BG */}
+      <div className='absolute top-0 left-0 w-full h-full bg-black -z-20' />
     </Section>
   );
 }

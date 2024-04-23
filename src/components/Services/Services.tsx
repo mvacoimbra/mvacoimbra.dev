@@ -21,7 +21,8 @@ export default function Services() {
   return (
     <Section
       id='services'
-      className='bg-synth-neutral1 flex gap-12  flex-col py-3 px-[100px] relative max-sm:px-[20px] overflow-hidden'
+      // className='bg-synth-neutral1 flex gap-12  flex-col py-3 px-[100px] relative max-sm:px-[20px] overflow-hidden'
+      sectionClasses='bg-synth-neutral1'
     >
       <div className='flex flex-col justify-center items-center'>
         <div className='flex items-center gap-10 max-sm:gap-1 mt-10'>
