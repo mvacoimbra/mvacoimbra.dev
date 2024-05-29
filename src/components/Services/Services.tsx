@@ -25,7 +25,7 @@ export default function Services() {
 			sectionClasses="bg-synth-neutral1"
 		>
 			<div className="flex flex-col justify-center items-center">
-				<div className="flex items-center gap-10 max-sm:gap-1 mt-10">
+				<div className="flex items-center gap-10 max-sm:gap-1 mt-10 mb-10">
 					<Dots />
 					<h3 className="text-synth-green3 text-5xl">Serviços</h3>
 					<Dots reverse />
