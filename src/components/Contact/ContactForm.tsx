@@ -1,4 +1,8 @@
-import { useForm, type SubmitHandler, type SubmitErrorHandler } from "react-hook-form";
+import {
+	useForm,
+	type SubmitHandler,
+	type SubmitErrorHandler,
+} from "react-hook-form";
 import { FaIcon } from "../UI";
 import { useEffect, useRef, useState } from "react";
 import { formatPhoneNumber } from "./masks";
@@ -120,7 +124,7 @@ export default function ContactForm() {
 						})}
 						type="email"
 						className="rounded-full py-[2px] pl-2 text-black outline-none focus:border-synth-green1 border-2 border-synth-neutral3"
-						placeholder="seumelhor@email.com"
+						placeholder="seu@email.com"
 					/>
 				</div>
 				<div className={`${inputContainer}`}>

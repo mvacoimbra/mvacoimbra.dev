@@ -17,7 +17,7 @@ const slides: ServiceCardProps[] = [
 		title: "Web Apps",
 		subtitle: "Websites",
 		description:
-			"Desenvolvimento de websites responsivos, optimizados para mecanismos de busca.",
+			"Desenvolvimento de websites responsivos, otimizados para mecanismos de busca.",
 		bgColor: "linear-gradient(135deg, #E34F26 50%, #EF642A 50%)",
 	},
 	{

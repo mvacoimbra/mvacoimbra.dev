@@ -27,7 +27,7 @@ export default function Portfolio() {
 		>
 			<div className="grid grid-cols-4 max-xl:grid-cols-3 max-sm:flex flex-col">
 				<div className="flex flex-col justify-center ml-[100px] max-lg:ml-5 max-sm:ml-0 max-sm:p-5 max-sm:gap-2 max-sm:items-center gap-5">
-					<h3 className="text-5xl">Porfólio</h3>
+					<h3 className="text-5xl">Portfólio</h3>
 					<p className="max-w-56 max-sm:text-center">
 						Conheça as soluções criadas e desenvolvidas para clientes.
 					</p>

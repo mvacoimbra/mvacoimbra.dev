@@ -30,9 +30,9 @@ export default function Services() {
 					<h3 className="text-synth-green3 text-5xl">Serviços</h3>
 					<Dots reverse />
 				</div>
-				<h4 className="text-synth-neutral3 text-xl">
+				{/* <h4 className="text-synth-neutral3 text-xl">
 					Serviços prestados e soluções
-				</h4>
+				</h4> */}
 			</div>
 			<>
 				<ServiceSlider />

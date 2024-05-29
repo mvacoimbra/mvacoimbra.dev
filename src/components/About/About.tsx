@@ -18,9 +18,9 @@ export default function About() {
 					<div className="text-white text-base max-w-[820px] ">
 						<p>
 							sou Marcos Coimbra, desenvolvedor web entusiasta da solução de
-							problemas. Tenho experiência em design, prototipagem e
-							desenvolvimento de aplicações web e mobile e atualmente faço parte
-							da equipe{" "}
+							problemas. Tenho experiência em design, prototipagem,
+							desenvolvimento de aplicações web e mobile, e atualmente faço
+							parte da equipe{" "}
 							<strong className="text-synth-green1">Bunch Software</strong>.
 						</p>
 						<p>
