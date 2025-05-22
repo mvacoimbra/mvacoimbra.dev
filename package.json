@@ -1,42 +1,76 @@
 {
-	"name": "mvacoimbra-dev",
-	"private": true,
-	"version": "0.0.0",
-	"type": "module",
-	"scripts": {
-		"dev": "vite",
-		"build": "tsc && vite build",
-		"lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-		"preview": "vite preview"
-	},
-	"dependencies": {
-		"@emailjs/browser": "^4.3.3",
-		"devicon": "^2.16.0",
-		"react": "^18.2.0",
-		"react-dom": "^18.2.0",
-		"react-hook-form": "^7.51.3",
-		"react-slick": "^0.30.2",
-		"slick-carousel": "^1.8.1"
-	},
-	"devDependencies": {
-		"@biomejs/biome": "1.7.3",
-		"@types/node": "^20.12.7",
-		"@types/react": "^18.2.66",
-		"@types/react-dom": "^18.2.22",
-		"@types/react-slick": "^0.23.13",
-		"@typescript-eslint/eslint-plugin": "^7.2.0",
-		"@typescript-eslint/parser": "^7.2.0",
-		"@vitejs/plugin-react": "^4.2.1",
-		"autoprefixer": "^10.4.19",
-		"eslint": "^8.57.0",
-		"eslint-plugin-react-hooks": "^4.6.0",
-		"eslint-plugin-react-refresh": "^0.4.6",
-		"postcss": "^8.4.38",
-		"prettier": "^3.2.5",
-		"prettier-plugin-tailwindcss": "^0.5.13",
-		"tailwindcss": "^3.4.3",
-		"typescript": "^5.2.2",
-		"vite": "^5.2.0"
-	},
-	"packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
+  "name": "mvacoimbra-dev-br",
+  "version": "1.0.0",
+  "description": "A blank template to get started with Payload 3.0",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "build": "cross-env NODE_OPTIONS=--no-deprecation next build",
+    "dev": "cross-env NODE_OPTIONS=--no-deprecation next dev",
+    "devsafe": "rm -rf .next && cross-env NODE_OPTIONS=--no-deprecation next dev",
+    "generate:importmap": "cross-env NODE_OPTIONS=--no-deprecation payload generate:importmap",
+    "generate:types": "cross-env NODE_OPTIONS=--no-deprecation payload generate:types",
+    "lint": "cross-env NODE_OPTIONS=--no-deprecation biome lint .",
+    "lint:fix": "cross-env NODE_OPTIONS=--no-deprecation biome check --write --unsafe .",
+    "format": "cross-env NODE_OPTIONS=--no-deprecation biome format .",
+    "format:fix": "cross-env NODE_OPTIONS=--no-deprecation biome format --write .",
+    "payload": "cross-env NODE_OPTIONS=--no-deprecation payload",
+    "start": "cross-env NODE_OPTIONS=--no-deprecation next start"
+  },
+  "dependencies": {
+    "@payloadcms/db-sqlite": "3.33.0",
+    "@payloadcms/next": "3.33.0",
+    "@payloadcms/payload-cloud": "3.33.0",
+    "@payloadcms/richtext-lexical": "3.33.0",
+    "@radix-ui/react-avatar": "^1.1.10",
+    "@radix-ui/react-separator": "^1.1.7",
+    "@radix-ui/react-slot": "^1.2.3",
+    "@radix-ui/react-tooltip": "^1.2.7",
+    "@tailwindcss/postcss": "^4.1.7",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "cross-env": "^7.0.3",
+    "graphql": "^16.8.1",
+    "gray-matter": "^4.0.3",
+    "lucide-react": "^0.511.0",
+    "motion": "^12.12.1",
+    "next": "15.3.0",
+    "next-themes": "^0.4.6",
+    "payload": "3.33.0",
+    "postcss": "^8.5.3",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "react-markdown": "^10.1.0",
+    "rehype-pretty-code": "^0.14.1",
+    "rehype-stringify": "^10.0.1",
+    "remark-gfm": "^4.0.1",
+    "remark-parse": "^11.0.0",
+    "remark-rehype": "^11.1.2",
+    "sharp": "0.32.6",
+    "tailwind-merge": "^3.3.0",
+    "tailwindcss": "^4.1.7",
+    "unified": "^11.0.5"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.9.4",
+    "@eslint/eslintrc": "^3.2.0",
+    "@types/node": "^22.5.4",
+    "@types/react": "19.1.0",
+    "@types/react-dom": "19.1.2",
+    "eslint": "^9.16.0",
+    "eslint-config-next": "15.3.0",
+    "prettier": "^3.4.2",
+    "tw-animate-css": "^1.3.0",
+    "typescript": "5.7.3"
+  },
+  "engines": {
+    "node": "^18.20.2 || >=20.9.0",
+    "pnpm": "^9 || ^10"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "sharp"
+    ]
+  },
+  "packageManager": "pnpm@9.7.0+sha512.dc09430156b427f5ecfc79888899e1c39d2d690f004be70e05230b72cb173d96839587545d09429b55ac3c429c801b4dc3c0e002f653830a420fa2dd4e3cf9cf"
 }
