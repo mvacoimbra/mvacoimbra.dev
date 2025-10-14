@@ -1,7 +1,6 @@
 import Navbar from "@/shared/components/navbar";
 import { ThemeProvider } from "@/shared/components/theme-provider";
 import { TooltipProvider } from "@/shared/components/ui/tooltip";
-import { DATA } from "@/mock/resume";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import { Inter as FontSans } from "next/font/google";
@@ -13,20 +12,20 @@ const fontSans = FontSans({
 });
 
 export const metadata: Metadata = {
-	metadataBase: new URL(DATA.url),
+	metadataBase: new URL("https://mvacoimbra.dev.br"),
 	icons: {
 		icon: "/favicon.ico",
 	},
 	title: {
-		default: DATA.name,
-		template: `%s | ${DATA.name}`,
+		default: "Marcos Coimbra",
+		template: `%s | Marcos Coimbra`,
 	},
-	description: DATA.description,
+	description: "Engenheiro de Softwae.",
 	openGraph: {
-		title: `${DATA.name}`,
-		description: DATA.description,
-		url: DATA.url,
-		siteName: `${DATA.name}`,
+		title: "Marcos Coimbra",
+		description: "Engenheiro de Softwae.",
+		url: "https://mvacoimbra.dev.br",
+		siteName: "Marcos Coimbra",
 		locale: "pt_BR",
 		type: "website",
 	},
@@ -42,7 +41,7 @@ export const metadata: Metadata = {
 		},
 	},
 	twitter: {
-		title: `${DATA.name}`,
+		title: "Marcos Coimbra",
 		card: "summary_large_image",
 	},
 	verification: {

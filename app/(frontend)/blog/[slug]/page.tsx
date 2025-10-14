@@ -1,9 +1,11 @@
-import { getBlogPosts, getPost } from "@/mock/blog";
-import { DATA } from "@/mock/resume";
+import { getBlogPosts, getPost } from "@/lib/blog";
 import { formatDate } from "@/lib/utils";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
+
+const SITE_URL = "https://mvacoimbra.dev.br";
+const SITE_NAME = "Marcos Coimbra";
 
 export async function generateStaticParams() {
   const posts = await getBlogPosts();
@@ -25,7 +27,7 @@ export async function generateMetadata({
     summary: description,
     image,
   } = post.metadata;
-  let ogImage = image ? `${DATA.url}${image}` : `${DATA.url}/og?title=${title}`;
+  let ogImage = image ? `${SITE_URL}${image}` : `${SITE_URL}/og?title=${title}`;
 
   return {
     title,
@@ -35,7 +37,7 @@ export async function generateMetadata({
       description,
       type: "article",
       publishedTime,
-      url: `${DATA.url}/blog/${post.slug}`,
+      url: `${SITE_URL}/blog/${post.slug}`,
       images: [
         {
           url: ogImage,
@@ -78,12 +80,12 @@ export default async function Blog({
             dateModified: post.metadata.publishedAt,
             description: post.metadata.summary,
             image: post.metadata.image
-              ? `${DATA.url}${post.metadata.image}`
-              : `${DATA.url}/og?title=${post.metadata.title}`,
-            url: `${DATA.url}/blog/${post.slug}`,
+              ? `${SITE_URL}${post.metadata.image}`
+              : `${SITE_URL}/og?title=${post.metadata.title}`,
+            url: `${SITE_URL}/blog/${post.slug}`,
             author: {
               "@type": "Person",
-              name: DATA.name,
+              name: SITE_NAME,
             },
           }),
         }}
