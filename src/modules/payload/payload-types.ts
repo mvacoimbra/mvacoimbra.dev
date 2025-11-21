@@ -69,6 +69,10 @@ export interface Config {
   collections: {
     users: User;
     media: Media;
+    projects: Project;
+    work: Work;
+    education: Education;
+    skills: Skill;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -78,6 +82,10 @@ export interface Config {
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
+    projects: ProjectsSelect<false> | ProjectsSelect<true>;
+    work: WorkSelect<false> | WorkSelect<true>;
+    education: EducationSelect<false> | EducationSelect<true>;
+    skills: SkillsSelect<false> | SkillsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -86,8 +94,12 @@ export interface Config {
   db: {
     defaultIDType: number;
   };
-  globals: {};
-  globalsSelect: {};
+  globals: {
+    profile: Profile;
+  };
+  globalsSelect: {
+    profile: ProfileSelect<false> | ProfileSelect<true>;
+  };
   locale: null;
   user: User & {
     collection: 'users';
@@ -160,6 +172,81 @@ export interface Media {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "projects".
+ */
+export interface Project {
+  id: number;
+  title: string;
+  subtitle?: string | null;
+  description: string;
+  technologies?:
+    | {
+        name?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  thumbnail?: (number | null) | Media;
+  links?:
+    | {
+        type: 'website' | 'source';
+        url: string;
+        id?: string | null;
+      }[]
+    | null;
+  order?: number | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "work".
+ */
+export interface Work {
+  id: number;
+  companyName: string;
+  companyWebsiteUrl?: string | null;
+  companyLogo?: (number | null) | Media;
+  roles: {
+    title: string;
+    start: string;
+    end?: string | null;
+    description?: string | null;
+    id?: string | null;
+  }[];
+  order?: number | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "education".
+ */
+export interface Education {
+  id: number;
+  school: string;
+  href?: string | null;
+  logo?: (number | null) | Media;
+  degree: string;
+  start: string;
+  end?: string | null;
+  order?: number | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "skills".
+ */
+export interface Skill {
+  id: number;
+  name: string;
+  link?: string | null;
+  order?: number | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -189,6 +276,22 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'media';
         value: number | Media;
+      } | null)
+    | ({
+        relationTo: 'projects';
+        value: number | Project;
+      } | null)
+    | ({
+        relationTo: 'work';
+        value: number | Work;
+      } | null)
+    | ({
+        relationTo: 'education';
+        value: number | Education;
+      } | null)
+    | ({
+        relationTo: 'skills';
+        value: number | Skill;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -274,6 +377,79 @@ export interface MediaSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "projects_select".
+ */
+export interface ProjectsSelect<T extends boolean = true> {
+  title?: T;
+  subtitle?: T;
+  description?: T;
+  technologies?:
+    | T
+    | {
+        name?: T;
+        id?: T;
+      };
+  thumbnail?: T;
+  links?:
+    | T
+    | {
+        type?: T;
+        url?: T;
+        id?: T;
+      };
+  order?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "work_select".
+ */
+export interface WorkSelect<T extends boolean = true> {
+  companyName?: T;
+  companyWebsiteUrl?: T;
+  companyLogo?: T;
+  roles?:
+    | T
+    | {
+        title?: T;
+        start?: T;
+        end?: T;
+        description?: T;
+        id?: T;
+      };
+  order?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "education_select".
+ */
+export interface EducationSelect<T extends boolean = true> {
+  school?: T;
+  href?: T;
+  logo?: T;
+  degree?: T;
+  start?: T;
+  end?: T;
+  order?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "skills_select".
+ */
+export interface SkillsSelect<T extends boolean = true> {
+  name?: T;
+  link?: T;
+  order?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv_select".
  */
 export interface PayloadKvSelect<T extends boolean = true> {
@@ -311,6 +487,48 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
   batch?: T;
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "profile".
+ */
+export interface Profile {
+  id: number;
+  name: string;
+  description: string;
+  about: string;
+  avatar: number | Media;
+  socialLinks?:
+    | {
+        platform: string;
+        url: string;
+        icon?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "profile_select".
+ */
+export interface ProfileSelect<T extends boolean = true> {
+  name?: T;
+  description?: T;
+  about?: T;
+  avatar?: T;
+  socialLinks?:
+    | T
+    | {
+        platform?: T;
+        url?: T;
+        icon?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

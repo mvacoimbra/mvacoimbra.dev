@@ -3,7 +3,6 @@
 import { ChevronRightIcon } from 'lucide-react'
 import { motion } from 'motion/react'
 import Link from 'next/link'
-import * as _ from 'radashi'
 import React from 'react'
 import { cn } from '@/src/lib/utils'
 import { Avatar } from './ui/Avatar'
@@ -11,7 +10,7 @@ import { Badge } from './ui/Badge'
 import { Card } from './ui/Card'
 
 interface ResumeCardProps {
-  logoUrl?: string
+  logoUrl: string
   altText: string
   title: string
   subtitle?: string
@@ -56,7 +55,7 @@ export const ResumeCard = ({
             <Avatar.Fallback>{altText[0]}</Avatar.Fallback>
           </Avatar.Root>
         </div>
-        <div className="grow ml-4 items-center flex-col group">
+        <div className="flex-grow ml-4 items-center flex-col group">
           <Card.Header>
             <div className="flex items-center justify-between gap-x-2 text-base">
               <h3 className="inline-flex items-center justify-center font-semibold leading-none text-xs sm:text-sm">
@@ -67,7 +66,7 @@ export const ResumeCard = ({
                       <Badge
                         variant="secondary"
                         className="align-middle text-xs"
-                        key={`${_.uid(4)}`}
+                        key={index}
                       >
                         {badge}
                       </Badge>

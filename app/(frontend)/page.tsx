@@ -1,4 +1,3 @@
-import { EDUCATION, PROFILE, PROJECTS, SKILLS } from '@/src/lib/data'
 import BlurFade from '@/src/modules/shared/components/magicui/BlurFade'
 import BlurFadeText from '@/src/modules/shared/components/magicui/BlurFadeText'
 import { ProjectCard } from '@/src/modules/shared/components/ProjectCard'
@@ -10,10 +9,18 @@ import {
 import { Badge } from '@/src/modules/shared/components/ui/Badge'
 import { Markdown } from '@/src/modules/shared/components/mdx'
 import Link from 'next/link'
+import { getEducation, getProfile, getProjects, getSkills } from '@/src/lib/fetch-data'
 
 const BLUR_FADE_DELAY = 0.04
 
-export default function Page() {
+export default async function Page() {
+  const [PROFILE, EDUCATION, SKILLS, PROJECTS] = await Promise.all([
+    getProfile(),
+    getEducation(),
+    getSkills(),
+    getProjects(),
+  ])
+
   return (
     <main className="flex flex-col min-h-dvh space-y-10">
       <section id="hero">
