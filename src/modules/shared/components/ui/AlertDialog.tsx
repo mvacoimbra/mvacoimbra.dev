@@ -2,9 +2,9 @@ import * as React from "react"
 import * as AlertDialogPrimitive from "@radix-ui/react-alert-dialog"
 
 import { cn } from "@/src/lib/utils"
-import { buttonVariants } from "@/components/ui/button"
+import { buttonVariants } from "@/src/modules/shared/components/ui/Button"
 
-function AlertDialog({
+function AlertDialogRoot({
   ...props
 }: React.ComponentProps<typeof AlertDialogPrimitive.Root>) {
   return <AlertDialogPrimitive.Root data-slot="alert-dialog" {...props} />
@@ -140,16 +140,18 @@ function AlertDialogCancel({
   )
 }
 
-export {
-  AlertDialog,
-  AlertDialogPortal,
-  AlertDialogOverlay,
-  AlertDialogTrigger,
-  AlertDialogContent,
-  AlertDialogHeader,
-  AlertDialogFooter,
-  AlertDialogTitle,
-  AlertDialogDescription,
-  AlertDialogAction,
-  AlertDialogCancel,
+const AlertDialog = {
+  Root: AlertDialogRoot,
+  Portal: AlertDialogPortal,
+  Overlay: AlertDialogOverlay,
+  Trigger: AlertDialogTrigger,
+  Content: AlertDialogContent,
+  Header: AlertDialogHeader,
+  Footer: AlertDialogFooter,
+  Title: AlertDialogTitle,
+  Description: AlertDialogDescription,
+  Action: AlertDialogAction,
+  Cancel: AlertDialogCancel,
 }
+
+export { AlertDialog }

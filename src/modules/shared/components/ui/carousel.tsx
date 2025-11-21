@@ -5,7 +5,7 @@ import useEmblaCarousel, {
 import { ArrowLeft, ArrowRight } from "lucide-react"
 
 import { cn } from "@/src/lib/utils"
-import { Button } from "@/components/ui/button"
+import { Button } from "@/src/modules/shared/components/ui/Button"
 
 type CarouselApi = UseEmblaCarouselType[1]
 type UseCarouselParameters = Parameters<typeof useEmblaCarousel>
@@ -40,7 +40,7 @@ function useCarousel() {
   return context
 }
 
-function Carousel({
+function CarouselRoot({
   orientation = "horizontal",
   opts,
   setApi,
@@ -229,11 +229,12 @@ function CarouselNext({
   )
 }
 
-export {
-  type CarouselApi,
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselPrevious,
-  CarouselNext,
+const Carousel = {
+  Root: CarouselRoot,
+  Content: CarouselContent,
+  Item: CarouselItem,
+  Previous: CarouselPrevious,
+  Next: CarouselNext,
 }
+
+export { type CarouselApi, Carousel, useCarousel }

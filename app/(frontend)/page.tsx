@@ -4,7 +4,7 @@ import { headers as getHeaders } from 'next/headers.js'
 import Image from 'next/image'
 import { getPayload } from 'payload'
 import './globals.css'
-import { Button } from '@/src/modules/shared/components/ui/button'
+import { Button } from '@/src/modules/shared/components/ui/Button'
 
 export default async function HomePage() {
   return (

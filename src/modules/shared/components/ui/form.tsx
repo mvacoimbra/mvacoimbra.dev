@@ -14,9 +14,7 @@ import {
 } from "react-hook-form"
 
 import { cn } from "@/src/lib/utils"
-import { Label } from "@/components/ui/label"
-
-const Form = FormProvider
+import { Label } from "@/src/modules/shared/components/ui/Label"
 
 type FormFieldContextValue<
   TFieldValues extends FieldValues = FieldValues,
@@ -155,13 +153,16 @@ function FormMessage({ className, ...props }: React.ComponentProps<"p">) {
   )
 }
 
-export {
-  useFormField,
-  Form,
-  FormItem,
-  FormLabel,
-  FormControl,
-  FormDescription,
-  FormMessage,
-  FormField,
+const FormRoot = FormProvider
+
+const Form = {
+  Root: FormRoot,
+  Item: FormItem,
+  Label: FormLabel,
+  Control: FormControl,
+  Description: FormDescription,
+  Message: FormMessage,
+  Field: FormField,
 }
+
+export { useFormField, Form }

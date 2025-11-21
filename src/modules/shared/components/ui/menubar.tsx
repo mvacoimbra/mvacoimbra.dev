@@ -4,7 +4,7 @@ import { CheckIcon, ChevronRightIcon, CircleIcon } from "lucide-react"
 
 import { cn } from "@/src/lib/utils"
 
-function Menubar({
+function MenubarRoot({
   className,
   ...props
 }: React.ComponentProps<typeof MenubarPrimitive.Root>) {
@@ -254,21 +254,23 @@ function MenubarSubContent({
   )
 }
 
-export {
-  Menubar,
-  MenubarPortal,
-  MenubarMenu,
-  MenubarTrigger,
-  MenubarContent,
-  MenubarGroup,
-  MenubarSeparator,
-  MenubarLabel,
-  MenubarItem,
-  MenubarShortcut,
-  MenubarCheckboxItem,
-  MenubarRadioGroup,
-  MenubarRadioItem,
-  MenubarSub,
-  MenubarSubTrigger,
-  MenubarSubContent,
+const Menubar = {
+  Root: MenubarRoot,
+  Portal: MenubarPortal,
+  Menu: MenubarMenu,
+  Trigger: MenubarTrigger,
+  Content: MenubarContent,
+  Group: MenubarGroup,
+  Separator: MenubarSeparator,
+  Label: MenubarLabel,
+  Item: MenubarItem,
+  Shortcut: MenubarShortcut,
+  CheckboxItem: MenubarCheckboxItem,
+  RadioGroup: MenubarRadioGroup,
+  RadioItem: MenubarRadioItem,
+  Sub: MenubarSub,
+  SubTrigger: MenubarSubTrigger,
+  SubContent: MenubarSubContent,
 }
+
+export { Menubar }

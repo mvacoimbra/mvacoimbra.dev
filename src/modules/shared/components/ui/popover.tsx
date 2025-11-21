@@ -5,7 +5,7 @@ import * as PopoverPrimitive from "@radix-ui/react-popover"
 
 import { cn } from "@/src/lib/utils"
 
-function Popover({
+function PopoverRoot({
   ...props
 }: React.ComponentProps<typeof PopoverPrimitive.Root>) {
   return <PopoverPrimitive.Root data-slot="popover" {...props} />
@@ -45,4 +45,11 @@ function PopoverAnchor({
   return <PopoverPrimitive.Anchor data-slot="popover-anchor" {...props} />
 }
 
-export { Popover, PopoverTrigger, PopoverContent, PopoverAnchor }
+const Popover = {
+  Root: PopoverRoot,
+  Trigger: PopoverTrigger,
+  Content: PopoverContent,
+  Anchor: PopoverAnchor,
+}
+
+export { Popover }

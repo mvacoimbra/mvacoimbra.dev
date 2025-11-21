@@ -4,7 +4,7 @@ import { ChevronRight, MoreHorizontal } from "lucide-react"
 
 import { cn } from "@/src/lib/utils"
 
-function Breadcrumb({ ...props }: React.ComponentProps<"nav">) {
+function BreadcrumbRoot({ ...props }: React.ComponentProps<"nav">) {
   return <nav aria-label="breadcrumb" data-slot="breadcrumb" {...props} />
 }
 
@@ -98,12 +98,14 @@ function BreadcrumbEllipsis({
   )
 }
 
-export {
-  Breadcrumb,
-  BreadcrumbList,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-  BreadcrumbEllipsis,
+const Breadcrumb = {
+  Root: BreadcrumbRoot,
+  List: BreadcrumbList,
+  Item: BreadcrumbItem,
+  Link: BreadcrumbLink,
+  Page: BreadcrumbPage,
+  Separator: BreadcrumbSeparator,
+  Ellipsis: BreadcrumbEllipsis,
 }
+
+export { Breadcrumb }

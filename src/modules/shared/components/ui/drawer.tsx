@@ -5,7 +5,7 @@ import { Drawer as DrawerPrimitive } from "vaul"
 
 import { cn } from "@/src/lib/utils"
 
-function Drawer({
+function DrawerRoot({
   ...props
 }: React.ComponentProps<typeof DrawerPrimitive.Root>) {
   return <DrawerPrimitive.Root data-slot="drawer" {...props} />
@@ -121,15 +121,17 @@ function DrawerDescription({
   )
 }
 
-export {
-  Drawer,
-  DrawerPortal,
-  DrawerOverlay,
-  DrawerTrigger,
-  DrawerClose,
-  DrawerContent,
-  DrawerHeader,
-  DrawerFooter,
-  DrawerTitle,
-  DrawerDescription,
+const Drawer = {
+  Root: DrawerRoot,
+  Portal: DrawerPortal,
+  Overlay: DrawerOverlay,
+  Trigger: DrawerTrigger,
+  Close: DrawerClose,
+  Content: DrawerContent,
+  Header: DrawerHeader,
+  Footer: DrawerFooter,
+  Title: DrawerTitle,
+  Description: DrawerDescription,
 }
+
+export { Drawer }

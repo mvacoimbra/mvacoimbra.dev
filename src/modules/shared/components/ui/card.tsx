@@ -2,7 +2,7 @@ import * as React from "react"
 
 import { cn } from "@/src/lib/utils"
 
-function Card({ className, ...props }: React.ComponentProps<"div">) {
+function CardRoot({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="card"
@@ -81,12 +81,14 @@ function CardFooter({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-export {
-  Card,
-  CardHeader,
-  CardFooter,
-  CardTitle,
-  CardAction,
-  CardDescription,
-  CardContent,
+const Card = {
+  Root: CardRoot,
+  Header: CardHeader,
+  Footer: CardFooter,
+  Title: CardTitle,
+  Action: CardAction,
+  Description: CardDescription,
+  Content: CardContent,
 }
+
+export { Card }

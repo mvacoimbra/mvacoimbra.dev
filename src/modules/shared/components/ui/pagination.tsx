@@ -6,9 +6,9 @@ import {
 } from "lucide-react"
 
 import { cn } from "@/src/lib/utils"
-import { Button, buttonVariants } from "@/components/ui/button"
+import { Button, buttonVariants } from "@/src/modules/shared/components/ui/Button"
 
-function Pagination({ className, ...props }: React.ComponentProps<"nav">) {
+function PaginationRoot({ className, ...props }: React.ComponentProps<"nav">) {
   return (
     <nav
       role="navigation"
@@ -116,12 +116,14 @@ function PaginationEllipsis({
   )
 }
 
-export {
-  Pagination,
-  PaginationContent,
-  PaginationLink,
-  PaginationItem,
-  PaginationPrevious,
-  PaginationNext,
-  PaginationEllipsis,
+const Pagination = {
+  Root: PaginationRoot,
+  Content: PaginationContent,
+  Link: PaginationLink,
+  Item: PaginationItem,
+  Previous: PaginationPrevious,
+  Next: PaginationNext,
+  Ellipsis: PaginationEllipsis,
 }
+
+export { Pagination }

@@ -5,25 +5,14 @@ import { Slot } from "@radix-ui/react-slot"
 import { cva, type VariantProps } from "class-variance-authority"
 import { PanelLeftIcon } from "lucide-react"
 
-import { useIsMobile } from "@/hooks/use-mobile"
+import { useIsMobile } from "@/src/modules/shared/hooks/use-mobile"
 import { cn } from "@/src/lib/utils"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Separator } from "@/components/ui/separator"
-import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-} from "@/components/ui/sheet"
-import { Skeleton } from "@/components/ui/skeleton"
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip"
+import { Button } from "@/src/modules/shared/components/ui/Button"
+import { Input } from "@/src/modules/shared/components/ui/Input"
+import { Separator } from "@/src/modules/shared/components/ui/Separator"
+import { Sheet } from "@/src/modules/shared/components/ui/Sheet"
+import { Skeleton } from "@/src/modules/shared/components/ui/Skeleton"
+import { Tooltip } from "@/src/modules/shared/components/ui/Tooltip"
 
 const SIDEBAR_COOKIE_NAME = "sidebar_state"
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7
@@ -128,7 +117,7 @@ function SidebarProvider({
 
   return (
     <SidebarContext.Provider value={contextValue}>
-      <TooltipProvider delayDuration={0}>
+      <Tooltip.Provider delayDuration={0}>
         <div
           data-slot="sidebar-wrapper"
           style={
@@ -146,7 +135,7 @@ function SidebarProvider({
         >
           {children}
         </div>
-      </TooltipProvider>
+      </Tooltip.Provider>
     </SidebarContext.Provider>
   )
 }
@@ -182,8 +171,8 @@ function Sidebar({
 
   if (isMobile) {
     return (
-      <Sheet open={openMobile} onOpenChange={setOpenMobile} {...props}>
-        <SheetContent
+      <Sheet.Root open={openMobile} onOpenChange={setOpenMobile} {...props}>
+        <Sheet.Content
           data-sidebar="sidebar"
           data-slot="sidebar"
           data-mobile="true"
@@ -195,13 +184,13 @@ function Sidebar({
           }
           side={side}
         >
-          <SheetHeader className="sr-only">
-            <SheetTitle>Sidebar</SheetTitle>
-            <SheetDescription>Displays the mobile sidebar.</SheetDescription>
-          </SheetHeader>
+          <Sheet.Header className="sr-only">
+            <Sheet.Title>Sidebar</Sheet.Title>
+            <Sheet.Description>Displays the mobile sidebar.</Sheet.Description>
+          </Sheet.Header>
           <div className="flex h-full w-full flex-col">{children}</div>
-        </SheetContent>
-      </Sheet>
+        </Sheet.Content>
+      </Sheet.Root>
     )
   }
 
@@ -506,7 +495,7 @@ function SidebarMenuButton({
 }: React.ComponentProps<"button"> & {
   asChild?: boolean
   isActive?: boolean
-  tooltip?: string | React.ComponentProps<typeof TooltipContent>
+  tooltip?: string | React.ComponentProps<typeof Tooltip.Content>
 } & VariantProps<typeof sidebarMenuButtonVariants>) {
   const Comp = asChild ? Slot : "button"
   const { isMobile, state } = useSidebar()
@@ -533,15 +522,15 @@ function SidebarMenuButton({
   }
 
   return (
-    <Tooltip>
-      <TooltipTrigger asChild>{button}</TooltipTrigger>
-      <TooltipContent
+    <Tooltip.Root>
+      <Tooltip.Trigger asChild>{button}</Tooltip.Trigger>
+      <Tooltip.Content
         side="right"
         align="center"
         hidden={state !== "collapsed" || isMobile}
         {...tooltip}
       />
-    </Tooltip>
+    </Tooltip.Root>
   )
 }
 
