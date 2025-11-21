@@ -1,7 +1,6 @@
 import { cn } from '@/src/lib/utils'
 import Navbar from '@/src/modules/shared/components/Navbar'
-import { Tooltip } from '@/src/modules/shared/components/ui/Tooltip'
-import { ThemeProvider } from '@/src/modules/shared/providers/ThemeProvider'
+import { Providers } from '@/src/lib/providers'
 import type { Metadata } from 'next'
 import { Inter as FontSans } from 'next/font/google'
 import './globals.css'
@@ -60,12 +59,10 @@ export default function RootLayout({
           fontSans.variable,
         )}
       >
-        <ThemeProvider attribute="class" defaultTheme="light">
-          <Tooltip.Provider delayDuration={10}>
-            {children}
-            <Navbar />
-          </Tooltip.Provider>
-        </ThemeProvider>
+        <Providers>
+          {children}
+          <Navbar />
+        </Providers>
       </body>
     </html>
   )

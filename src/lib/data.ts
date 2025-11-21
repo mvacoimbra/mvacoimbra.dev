@@ -46,6 +46,7 @@ export const NAVBAR_ITEMS: Array<NavbarItem> = [
   {
     href: 'https://linkedin.com/in/mvacoimbra',
     iconName: 'linkedin',
+    label: 'LinkedIn',
     target: '_blank',
   },
 ]
@@ -68,8 +69,7 @@ export type ProjectData = Array<Project>
 export const PROJECTS: Array<Project> = [
   {
     title: 'Chat Collect',
-    thumbnailUrl:
-      'https://pub-83c5db439b40468498f97946200806f7.r2.dev/automatic-chat.mp4',
+    thumbnailUrl: 'https://avatars.githubusercontent.com/mvacoimbra',
     description:
       'With the release of the [OpenAI GPT Store](https://openai.com/blog/introducing-the-gpt-store), I decided to build a SaaS which allows users to collect email addresses from their GPT users. This is a great way to build an audience and monetize your GPT API usage.',
     technologies: [

@@ -8,8 +8,8 @@ import {
   getAvatarFallback,
 } from '@/src/modules/shared/components/ui/Avatar'
 import { Badge } from '@/src/modules/shared/components/ui/Badge'
+import { Markdown } from '@/src/modules/shared/components/mdx'
 import Link from 'next/link'
-import Markdown from 'react-markdown'
 
 const BLUR_FADE_DELAY = 0.04
 

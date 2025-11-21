@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import ReactMarkdown from "react-markdown";
 
 function Table({ data }: { data: { headers: string[]; rows: string[][] } }) {
   let headers = data.headers.map((header, index) => (
@@ -89,3 +90,12 @@ export const globalComponents = {
   a: CustomLink,
   Table,
 };
+
+// Wrapper for react-markdown that accepts className
+export function Markdown({ className, children }: { className?: string; children: string }) {
+  return (
+    <div className={className}>
+      <ReactMarkdown>{children}</ReactMarkdown>
+    </div>
+  );
+}

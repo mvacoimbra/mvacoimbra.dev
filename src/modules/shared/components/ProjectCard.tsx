@@ -3,7 +3,7 @@ import { cn } from '@/src/lib/utils'
 import Image from 'next/image'
 import Link from 'next/link'
 import * as _ from 'radashi'
-import Markdown from 'react-markdown'
+import { Markdown } from './mdx'
 import { Badge } from './ui/Badge'
 import { Card } from './ui/Card'
 
