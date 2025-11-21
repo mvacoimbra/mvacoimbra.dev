@@ -1,0 +1,8 @@
+---
+alwaysApply: true
+---
+
+# AFETER A SERIES OF MODIFICATIONS
+- run lint, format, tsc, build and fix all issues
+- React Components Files MUST be PascalCase
+- We use composition Pattern for components in a object notation like Card.Root
