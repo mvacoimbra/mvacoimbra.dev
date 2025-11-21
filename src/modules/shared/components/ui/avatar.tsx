@@ -1,9 +1,8 @@
-import * as React from "react"
-import * as AvatarPrimitive from "@radix-ui/react-avatar"
+import * as AvatarPrimitive from '@radix-ui/react-avatar'
 
-import { cn } from "@/src/lib/utils"
+import { cn } from '@/src/lib/utils'
 
-function Avatar({
+function AvatarRoot({
   className,
   ...props
 }: React.ComponentProps<typeof AvatarPrimitive.Root>) {
@@ -11,8 +10,8 @@ function Avatar({
     <AvatarPrimitive.Root
       data-slot="avatar"
       className={cn(
-        "relative flex size-8 shrink-0 overflow-hidden rounded-full",
-        className
+        'relative flex size-8 shrink-0 overflow-hidden rounded-full',
+        className,
       )}
       {...props}
     />
@@ -26,7 +25,7 @@ function AvatarImage({
   return (
     <AvatarPrimitive.Image
       data-slot="avatar-image"
-      className={cn("aspect-square size-full", className)}
+      className={cn('aspect-square size-full', className)}
       {...props}
     />
   )
@@ -40,12 +39,43 @@ function AvatarFallback({
     <AvatarPrimitive.Fallback
       data-slot="avatar-fallback"
       className={cn(
-        "bg-muted flex size-full items-center justify-center rounded-full",
-        className
+        'bg-muted flex size-full items-center justify-center rounded-full',
+        className,
       )}
       {...props}
     />
   )
 }
 
-export { Avatar, AvatarImage, AvatarFallback }
+type getAvatarFallbackParams = {
+  fullName?: string
+  firstName?: string
+  secondName?: string
+}
+
+export function getAvatarFallback({
+  fullName,
+  firstName,
+  secondName,
+}: getAvatarFallbackParams) {
+  if (fullName) {
+    return fullName
+      .split(' ')
+      .map((name) => name[0])
+      .join('')
+  }
+
+  if (firstName && secondName) {
+    return firstName[0] + secondName[0]
+  }
+
+  return 'N/A'
+}
+
+const Avatar = {
+  Root: AvatarRoot,
+  Image: AvatarImage,
+  Fallback: AvatarFallback,
+}
+
+export { Avatar }
