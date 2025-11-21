@@ -1,3 +1,4 @@
+import "@/lib/polyfills";
 import Navbar from "@/shared/components/navbar";
 import { ThemeProvider } from "@/shared/components/theme-provider";
 import { TooltipProvider } from "@/shared/components/ui/tooltip";

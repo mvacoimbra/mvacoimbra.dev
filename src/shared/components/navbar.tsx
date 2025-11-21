@@ -1,3 +1,5 @@
+"use client";
+
 import { Dock, DockIcon } from "@/shared/components/magicui/dock";
 import { ModeToggle } from "@/shared/components/mode-toggle";
 import { buttonVariants } from "@/shared/components/ui/button";
