@@ -1,7 +1,6 @@
 import BlurFade from '@/src/modules/shared/components/magicui/BlurFade'
 import BlurFadeText from '@/src/modules/shared/components/magicui/BlurFadeText'
 import { ProjectCard } from '@/src/modules/shared/components/ProjectCard'
-import { ResumeCard } from '@/src/modules/shared/components/ResumeCard'
 import {
   Avatar,
   getAvatarFallback,
@@ -9,7 +8,13 @@ import {
 import { Badge } from '@/src/modules/shared/components/ui/Badge'
 import { Markdown } from '@/src/modules/shared/components/mdx'
 import Link from 'next/link'
-import { getEducation, getProfile, getProjects, getSkills, getWorkExperience } from '@/src/lib/fetch-data'
+import {
+  getEducation,
+  getProfile,
+  getProjects,
+  getSkills,
+  getWorkExperience,
+} from '@/src/lib/fetch-data'
 import { EducationCard } from '@/src/modules/shared/components/EducationCard'
 import { WorkCard } from '@/src/modules/shared/components/WorkCard'
 
@@ -161,15 +166,14 @@ export default async function Page() {
                 Get in Touch
               </h2>
               <p className="mx-auto max-w-[600px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                Want to chat? Just shoot me a dm{' '}
+                Hey! I just met you, and this is crazy, but here's my{' '}
                 <Link
                   href={'https://linkedin.com/in/mvacoimbra'}
                   className="text-blue-500 hover:underline"
                 >
-                  with a direct question on twitter
-                </Link>{' '}
-                and I&apos;ll respond whenever I can. I will ignore all
-                soliciting.
+                  linkedin
+                </Link>
+                , so dm me maybe.
               </p>
             </div>
           </BlurFade>

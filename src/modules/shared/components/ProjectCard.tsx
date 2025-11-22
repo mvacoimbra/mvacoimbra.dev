@@ -1,4 +1,4 @@
-import type { Project } from '@/src/lib/data'
+import type { Project } from '@/src/lib/types'
 import { cn } from '@/src/lib/utils'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -16,12 +16,13 @@ export function ProjectCard({ data, className }: Props) {
   return (
     <Card.Root
       className={
-        'flex flex-col overflow-hidden border hover:shadow-lg transition-all duration-300 ease-out h-full'
+        'flex flex-col overflow-hidden border hover:shadow-lg pt-0! transition-all duration-300 ease-out h-full'
       }
     >
       <div className={cn('block cursor-pointer', className)}>
         {data.thumbnailUrl && (
           <Image
+          unoptimized
             src={data.thumbnailUrl}
             alt={data.title}
             width={500}

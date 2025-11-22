@@ -11,9 +11,10 @@ import type { Media } from '@/src/modules/payload/payload-types'
 import type { IconName } from 'lucide-react/dynamic'
 
 // Helper to get URL from Media
-const getMediaUrl = (media: Media | string | null | undefined): string => {
+const getMediaUrl = (media: Media | number | string | null | undefined): string => {
   if (!media) return ''
   if (typeof media === 'string') return media
+  if (typeof media === 'number') return '' // Handle number case (ID reference) if needed, or fetch it. For now return empty string or placeholder.
   return media.url || ''
 }
 
