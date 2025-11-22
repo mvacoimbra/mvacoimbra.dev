@@ -57,4 +57,9 @@ export type Profile = {
   avatarUrl: string
   description: string
   about: string
+  socialLinks?: Array<{
+    platform: string
+    url: string
+    icon?: string
+  }>
 }

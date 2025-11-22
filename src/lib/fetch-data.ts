@@ -28,8 +28,12 @@ export async function getProfile(): Promise<ProfileType> {
     name: profile.name,
     avatarUrl: getMediaUrl(profile.avatar),
     description: profile.description,
-    about: profile.about as string, // Assuming richText is returned as HTML/string or handled in component. 
-    // If richText, we might need to serialise it. But here we changed it to 'textarea' (markdown) in previous steps, so it should be string.
+    about: profile.about as string,
+    socialLinks: (profile.socialLinks || []).map(link => ({
+        platform: link.platform,
+        url: link.url,
+        icon: link.icon || undefined
+    }))
   }
 }
 
@@ -47,6 +51,11 @@ export async function getNavbarItems(): Promise<NavbarItem[]> {
   }))
 
   return [
+    {
+      href: '/resume',
+      iconName: 'file-text',
+      label: 'Resume',
+    },
     {
       href: '/',
       iconName: 'home',

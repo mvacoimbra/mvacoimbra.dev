@@ -30,7 +30,7 @@ export default async function Page() {
   ])
 
   return (
-    <main className="flex flex-col min-h-dvh space-y-10">
+    <main className="flex flex-col min-h-dvh space-y-10 max-w-2xl mx-auto py-12 sm:py-24 px-6">
       <section id="hero">
         <div className="mx-auto w-full max-w-2xl space-y-8">
           <div className="gap-2 flex justify-between">
