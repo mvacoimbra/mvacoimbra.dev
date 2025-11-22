@@ -1,7 +1,7 @@
 'use client'
 
-import { Button } from './ui/Button'
 import { PrinterIcon } from 'lucide-react'
+import { Button } from './ui/Button'
 
 export const PrintButton = () => {
   return (
@@ -15,4 +15,3 @@ export const PrintButton = () => {
     </Button>
   )
 }
-

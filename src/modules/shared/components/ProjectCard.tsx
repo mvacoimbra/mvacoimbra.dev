@@ -1,8 +1,8 @@
-import type { Project } from '@/src/lib/types'
-import { cn } from '@/src/lib/utils'
 import Image from 'next/image'
 import Link from 'next/link'
 import * as _ from 'radashi'
+import type { Project } from '@/src/lib/types'
+import { cn } from '@/src/lib/utils'
 import { Markdown } from './mdx'
 import { Badge } from './ui/Badge'
 import { Card } from './ui/Card'
@@ -22,7 +22,7 @@ export function ProjectCard({ data, className }: Props) {
       <div className={cn('block cursor-pointer', className)}>
         {data.thumbnailUrl && (
           <Image
-          unoptimized
+            unoptimized
             src={data.thumbnailUrl}
             alt={data.title}
             width={500}

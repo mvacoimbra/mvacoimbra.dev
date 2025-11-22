@@ -54,8 +54,6 @@ export const Education: CollectionConfig = {
       name: 'order',
       type: 'number',
       defaultValue: 0,
-    }
+    },
   ],
 }
-
-

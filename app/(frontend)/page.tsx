@@ -1,12 +1,3 @@
-import BlurFade from '@/src/modules/shared/components/magicui/BlurFade'
-import BlurFadeText from '@/src/modules/shared/components/magicui/BlurFadeText'
-import { ProjectCard } from '@/src/modules/shared/components/ProjectCard'
-import {
-  Avatar,
-  getAvatarFallback,
-} from '@/src/modules/shared/components/ui/Avatar'
-import { Badge } from '@/src/modules/shared/components/ui/Badge'
-import { Markdown } from '@/src/modules/shared/components/mdx'
 import Link from 'next/link'
 import {
   getEducation,
@@ -16,6 +7,15 @@ import {
   getWorkExperience,
 } from '@/src/lib/fetch-data'
 import { EducationCard } from '@/src/modules/shared/components/EducationCard'
+import BlurFade from '@/src/modules/shared/components/magicui/BlurFade'
+import BlurFadeText from '@/src/modules/shared/components/magicui/BlurFadeText'
+import { Markdown } from '@/src/modules/shared/components/mdx'
+import { ProjectCard } from '@/src/modules/shared/components/ProjectCard'
+import {
+  Avatar,
+  getAvatarFallback,
+} from '@/src/modules/shared/components/ui/Avatar'
+import { Badge } from '@/src/modules/shared/components/ui/Badge'
 import { WorkCard } from '@/src/modules/shared/components/WorkCard'
 
 const BLUR_FADE_DELAY = 0.04

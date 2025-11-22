@@ -1,3 +1,5 @@
+import type { IconName } from 'lucide-react/dynamic'
+import type { Media } from '@/src/modules/payload/payload-types'
 import { getPayloadClient } from './payload-client'
 import type {
   Education as EducationType,
@@ -7,11 +9,11 @@ import type {
   Skill as SkillType,
   WorkExperience as WorkExperienceType,
 } from './types'
-import type { Media } from '@/src/modules/payload/payload-types'
-import type { IconName } from 'lucide-react/dynamic'
 
 // Helper to get URL from Media
-const getMediaUrl = (media: Media | number | string | null | undefined): string => {
+const getMediaUrl = (
+  media: Media | number | string | null | undefined,
+): string => {
   if (!media) return ''
   if (typeof media === 'string') return media
   if (typeof media === 'number') return '' // Handle number case (ID reference) if needed, or fetch it. For now return empty string or placeholder.
@@ -29,11 +31,11 @@ export async function getProfile(): Promise<ProfileType> {
     avatarUrl: getMediaUrl(profile.avatar),
     description: profile.description,
     about: profile.about as string,
-    socialLinks: (profile.socialLinks || []).map(link => ({
-        platform: link.platform,
-        url: link.url,
-        icon: link.icon || undefined
-    }))
+    socialLinks: (profile.socialLinks || []).map((link) => ({
+      platform: link.platform,
+      url: link.url,
+      icon: link.icon || undefined,
+    })),
   }
 }
 
@@ -147,4 +149,3 @@ export async function getEducation(): Promise<EducationType[]> {
     end: doc.end || undefined,
   }))
 }
-

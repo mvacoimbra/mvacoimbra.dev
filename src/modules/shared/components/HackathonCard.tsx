@@ -1,7 +1,7 @@
 import Link from 'next/link'
+import * as _ from 'radashi'
 import { Avatar } from './ui/Avatar'
 import { Badge } from './ui/Badge'
-import * as _ from 'radashi'
 
 interface Props {
   title: string

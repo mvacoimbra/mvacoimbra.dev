@@ -47,9 +47,8 @@ export const Profile: GlobalConfig = {
           name: 'icon',
           type: 'text', // simplified for now, could be select
           label: 'Icon Name (lucide-react)',
-        }
+        },
       ],
     },
   ],
 }
-

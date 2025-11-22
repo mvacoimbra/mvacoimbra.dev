@@ -6,13 +6,12 @@ import { sqliteAdapter } from '@payloadcms/db-sqlite'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import { buildConfig } from 'payload'
 import sharp from 'sharp'
-
-import { Media } from './collections/Media'
-import { Users } from './collections/Users'
-import { Projects } from './collections/Projects'
-import { Work } from './collections/Work'
 import { Education } from './collections/Education'
+import { Media } from './collections/Media'
+import { Projects } from './collections/Projects'
 import { Skills } from './collections/Skills'
+import { Users } from './collections/Users'
+import { Work } from './collections/Work'
 import { Profile } from './globals/Profile'
 
 const filename = fileURLToPath(import.meta.url)

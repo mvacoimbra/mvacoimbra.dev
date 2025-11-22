@@ -63,7 +63,6 @@ export const Projects: CollectionConfig = {
       name: 'order',
       type: 'number',
       defaultValue: 0,
-    }
+    },
   ],
 }
-

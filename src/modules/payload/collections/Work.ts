@@ -60,21 +60,21 @@ export const Work: CollectionConfig = {
           label: 'Description (Markdown)',
         },
         {
-            name: 'technologies',
-            type: 'array',
-            fields: [
-                {
-                    name: 'name',
-                    type: 'text',
-                }
-            ]
-        }
+          name: 'technologies',
+          type: 'array',
+          fields: [
+            {
+              name: 'name',
+              type: 'text',
+            },
+          ],
+        },
       ],
     },
     {
       name: 'order',
       type: 'number',
       defaultValue: 0,
-    }
+    },
   ],
 }

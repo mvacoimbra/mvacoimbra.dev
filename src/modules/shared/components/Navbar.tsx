@@ -1,17 +1,17 @@
 'use client'
 
-import { cn } from '@/src/lib/utils'
-import Link from 'next/link'
-import { Tooltip } from './ui/Tooltip'
-import { Dock } from './magicui/Dock'
-import { buttonVariants } from './ui/Button'
-import { Separator } from './ui/Separator'
+import { LinkIcon } from 'lucide-react'
 import { DynamicIcon } from 'lucide-react/dynamic'
 import Image from 'next/image'
-import { LinkIcon } from 'lucide-react'
-import { ThemeToggle } from './ThemeToggle'
+import Link from 'next/link'
 import * as _ from 'radashi'
 import type { NavbarItem } from '@/src/lib/types'
+import { cn } from '@/src/lib/utils'
+import { Dock } from './magicui/Dock'
+import { ThemeToggle } from './ThemeToggle'
+import { buttonVariants } from './ui/Button'
+import { Separator } from './ui/Separator'
+import { Tooltip } from './ui/Tooltip'
 
 export default function Navbar({ items }: { items: NavbarItem[] }) {
   return (

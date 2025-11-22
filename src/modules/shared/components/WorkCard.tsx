@@ -1,14 +1,10 @@
 'use client'
 
+import { format, parseISO } from 'date-fns'
+import Link from 'next/link'
+import type { WorkExperience, WorkRole } from '@/src/lib/types'
 import { Avatar } from '@/src/modules/shared/components/ui/Avatar'
 import { Card } from '@/src/modules/shared/components/ui/Card'
-import { ChevronRightIcon } from 'lucide-react'
-import { motion } from 'motion/react'
-import Link from 'next/link'
-import React from 'react'
-import { cn } from '@/src/lib/utils'
-import type { WorkExperience, WorkRole } from '@/src/lib/types'
-import { format, parseISO } from 'date-fns'
 
 interface WorkCardProps {
   experience: WorkExperience
@@ -30,7 +26,7 @@ export const WorkCard = ({ experience, isLast }: WorkCardProps) => {
         </Avatar.Root>
         {/* Vertical line connecting roles */}
         {!isLast && (
-             <div className="absolute top-12 left-1/2 -translate-x-1/2 w-[2px] bg-muted-foreground/20 h-[calc(100%+2rem)]" />
+          <div className="absolute top-12 left-1/2 -translate-x-1/2 w-[2px] bg-muted-foreground/20 h-[calc(100%+2rem)]" />
         )}
       </div>
 
@@ -38,21 +34,25 @@ export const WorkCard = ({ experience, isLast }: WorkCardProps) => {
       <div className="flex flex-col flex-1 pt-1 pb-8">
         {/* Company Info */}
         <div className="mb-4">
-            <h3 className="font-semibold text-base leading-none">
-              {experience.companyWebsiteUrl ? (
-                  <Link href={experience.companyWebsiteUrl} target="_blank" className="hover:underline">
-                      {experience.companyName}
-                  </Link>
-              ) : (
-                  experience.companyName
-              )}
-            </h3>
+          <h3 className="font-semibold text-base leading-none">
+            {experience.companyWebsiteUrl ? (
+              <Link
+                href={experience.companyWebsiteUrl}
+                target="_blank"
+                className="hover:underline"
+              >
+                {experience.companyName}
+              </Link>
+            ) : (
+              experience.companyName
+            )}
+          </h3>
         </div>
-        
+
         {/* Roles */}
         <div className="flex flex-col gap-6">
           {experience.roles.map((role, index) => (
-             <RoleItem key={index} role={role} />
+             <RoleItem key={`${role.title}-${index}`} role={role} />
           ))}
         </div>
       </div>
@@ -65,11 +65,11 @@ const formatDate = (dateString: string) => {
   try {
     // Handle 'Present' case if it's passed as string or empty
     if (dateString.toLowerCase() === 'present') return 'Present'
-    
+
     // Parse ISO string (YYYY-MM-DD or YYYY-MM)
     const date = parseISO(dateString)
     return format(date, 'MMM yyyy')
-  } catch (e) {
+  } catch (_e) {
     return dateString
   }
 }
@@ -86,7 +86,8 @@ const RoleItem = ({ role }: { role: WorkRole }) => {
               {role.title}
             </h4>
             <div className="text-xs text-muted-foreground mt-1">
-              {formatDate(role.start)} - {role.end ? formatDate(role.end) : 'Present'}
+              {formatDate(role.start)} -{' '}
+              {role.end ? formatDate(role.end) : 'Present'}
             </div>
           </div>
         </div>
@@ -96,11 +97,15 @@ const RoleItem = ({ role }: { role: WorkRole }) => {
             {role.description}
           </div>
         )}
-        
+
         {role.technologies && role.technologies.length > 0 && (
           <div className="flex flex-wrap gap-1 mt-2">
             {role.technologies.map((tech, index) => (
-              <Badge key={index} variant="default" className="text-[10px] px-1 py-0">
+              <Badge
+                key={index}
+                variant="default"
+                className="text-[10px] px-1 py-0"
+              >
                 {tech}
               </Badge>
             ))}
@@ -110,4 +115,3 @@ const RoleItem = ({ role }: { role: WorkRole }) => {
     </div>
   )
 }
-
