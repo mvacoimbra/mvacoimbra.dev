@@ -10,6 +10,7 @@ import { Badge } from '@/src/modules/shared/components/ui/Badge'
 import { Markdown } from '@/src/modules/shared/components/mdx'
 import Link from 'next/link'
 import { getEducation, getProfile, getProjects, getSkills, getWorkExperience } from '@/src/lib/fetch-data'
+import { EducationCard } from '@/src/modules/shared/components/EducationCard'
 import { WorkCard } from '@/src/modules/shared/components/WorkCard'
 
 const BLUR_FADE_DELAY = 0.04
@@ -92,15 +93,7 @@ export default async function Page() {
               key={education.school}
               delay={BLUR_FADE_DELAY * 8 + id * 0.05}
             >
-              <ResumeCard
-                key={education.school}
-                href={education.href ?? '#'}
-                logoUrl={education.logoUrl}
-                altText={education.school}
-                title={education.school}
-                subtitle={education.degree}
-                period={`${education.start} - ${education.end}`}
-              />
+              <EducationCard education={education} />
             </BlurFade>
           ))}
         </div>

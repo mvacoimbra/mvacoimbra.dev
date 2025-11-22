@@ -35,8 +35,8 @@ export const Education: CollectionConfig = {
       required: true,
       admin: {
         date: {
-          pickerAppearance: 'dayOnly',
-          displayFormat: 'yyyy',
+          pickerAppearance: 'monthOnly',
+          displayFormat: 'yyyy-MM',
         },
       },
     },
@@ -45,8 +45,8 @@ export const Education: CollectionConfig = {
       type: 'date',
       admin: {
         date: {
-          pickerAppearance: 'dayOnly',
-          displayFormat: 'yyyy',
+          pickerAppearance: 'monthOnly',
+          displayFormat: 'yyyy-MM',
         },
       },
     },
@@ -57,4 +57,5 @@ export const Education: CollectionConfig = {
     }
   ],
 }
+
 
