@@ -9,13 +9,15 @@ import {
 import { Badge } from '@/src/modules/shared/components/ui/Badge'
 import { Markdown } from '@/src/modules/shared/components/mdx'
 import Link from 'next/link'
-import { getEducation, getProfile, getProjects, getSkills } from '@/src/lib/fetch-data'
+import { getEducation, getProfile, getProjects, getSkills, getWorkExperience } from '@/src/lib/fetch-data'
+import { WorkCard } from '@/src/modules/shared/components/WorkCard'
 
 const BLUR_FADE_DELAY = 0.04
 
 export default async function Page() {
-  const [PROFILE, EDUCATION, SKILLS, PROJECTS] = await Promise.all([
+  const [PROFILE, WORK, EDUCATION, SKILLS, PROJECTS] = await Promise.all([
     getProfile(),
+    getWorkExperience(),
     getEducation(),
     getSkills(),
     getProjects(),
@@ -65,31 +67,21 @@ export default async function Page() {
           </Markdown>
         </BlurFade>
       </section>
-      {/* <section id="work"> */}
-      {/*   <div className="flex min-h-0 flex-col gap-y-3"> */}
-      {/*     <BlurFade delay={BLUR_FADE_DELAY * 5}> */}
-      {/*       <h2 className="text-xl font-bold">Work Experience</h2> */}
-      {/*     </BlurFade> */}
-      {/*     {DATA.work.map((work, id) => ( */}
-      {/*       <BlurFade */}
-      {/*         key={work.company} */}
-      {/*         delay={BLUR_FADE_DELAY * 6 + id * 0.05} */}
-      {/*       > */}
-      {/*         <ResumeCard */}
-      {/*           key={work.company} */}
-      {/*           logoUrl={work.logoUrl} */}
-      {/*           altText={work.company} */}
-      {/*           title={work.company} */}
-      {/*           subtitle={work.title} */}
-      {/*           href={work.href} */}
-      {/*           badges={work.badges} */}
-      {/*           period={`${work.start} - ${work.end ?? 'Present'}`} */}
-      {/*           description={work.description} */}
-      {/*         /> */}
-      {/*       </BlurFade> */}
-      {/*     ))} */}
-      {/*   </div> */}
-      {/* </section> */}
+      <section id="work">
+        <div className="flex min-h-0 flex-col gap-y-3">
+          <BlurFade delay={BLUR_FADE_DELAY * 5}>
+            <h2 className="text-xl font-bold">Work Experience</h2>
+          </BlurFade>
+          {WORK.map((work, id) => (
+            <BlurFade
+              key={work.companyName}
+              delay={BLUR_FADE_DELAY * 6 + id * 0.05}
+            >
+              <WorkCard experience={work} isLast={id === WORK.length - 1} />
+            </BlurFade>
+          ))}
+        </div>
+      </section>
       <section id="education">
         <div className="flex min-h-0 flex-col gap-y-3">
           <BlurFade delay={BLUR_FADE_DELAY * 7}>
@@ -165,29 +157,6 @@ export default async function Page() {
           </div>
         </div>
       </section>
-      {/* <section id="hackathons"> */}
-      {/*   <div className="space-y-12 w-full py-12"> */}
-      {/*     <BlurFade delay={BLUR_FADE_DELAY * 13}> */}
-      {/*       <div className="flex flex-col items-center justify-center space-y-4 text-center"> */}
-      {/*         <div className="space-y-2"> */}
-      {/*           <div className="inline-block rounded-lg bg-foreground text-background px-3 py-1 text-sm"> */}
-      {/*             Hackathons */}
-      {/*           </div> */}
-      {/*           <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl"> */}
-      {/*             I like building things */}
-      {/*           </h2> */}
-      {/*           <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed"> */}
-      {/*             During my time in university, I attended 1 hackathons. People */}
-      {/*             from around the country would come together and build */}
-      {/*             incredible things in 2-3 days. It was eye-opening to see the */}
-      {/*             endless possibilities brought to life by a group of motivated */}
-      {/*             and passionate individuals. */}
-      {/*           </p> */}
-      {/*         </div> */}
-      {/*       </div> */}
-      {/*     </BlurFade> */}
-      {/*   </div> */}
-      {/* </section> */}
       <section id="contact">
         <div className="grid items-center justify-center gap-4 px-4 text-center md:px-6 w-full py-12">
           <BlurFade delay={BLUR_FADE_DELAY * 16}>

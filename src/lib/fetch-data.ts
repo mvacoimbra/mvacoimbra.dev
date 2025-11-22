@@ -113,6 +113,9 @@ export async function getWorkExperience(): Promise<WorkExperienceType[]> {
       start: role.start,
       end: role.end || undefined,
       description: role.description as string,
+      technologies: (role.technologies || [])
+        .map((t) => t.name)
+        .filter((n): n is string => !!n),
     })),
   }))
 }

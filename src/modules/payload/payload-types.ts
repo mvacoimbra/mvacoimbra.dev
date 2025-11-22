@@ -211,6 +211,12 @@ export interface Work {
     start: string;
     end?: string | null;
     description?: string | null;
+    technologies?:
+      | {
+          name?: string | null;
+          id?: string | null;
+        }[]
+      | null;
     id?: string | null;
   }[];
   order?: number | null;
@@ -416,6 +422,12 @@ export interface WorkSelect<T extends boolean = true> {
         start?: T;
         end?: T;
         description?: T;
+        technologies?:
+          | T
+          | {
+              name?: T;
+              id?: T;
+            };
         id?: T;
       };
   order?: T;

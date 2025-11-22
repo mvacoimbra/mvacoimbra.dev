@@ -33,6 +33,7 @@ export type WorkRole = {
   start: string // ISO 8601
   end?: string // ISO 8601
   description: string
+  technologies?: string[]
 }
 
 export type WorkExperience = {
@@ -57,4 +58,3 @@ export type Profile = {
   description: string
   about: string
 }
-

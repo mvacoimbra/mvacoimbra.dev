@@ -59,6 +59,16 @@ export const Work: CollectionConfig = {
           type: 'textarea',
           label: 'Description (Markdown)',
         },
+        {
+            name: 'technologies',
+            type: 'array',
+            fields: [
+                {
+                    name: 'name',
+                    type: 'text',
+                }
+            ]
+        }
       ],
     },
     {
@@ -68,4 +78,3 @@ export const Work: CollectionConfig = {
     }
   ],
 }
-
