@@ -9,8 +9,8 @@ import type { NavbarItem } from '@/src/lib/types'
 import { cn } from '@/src/lib/utils'
 import { Dock } from './magicui/Dock'
 import { ThemeToggle } from './ThemeToggle'
-import { buttonVariants } from './ui/Button'
-import { Separator } from './ui/Separator'
+import { buttonVariants } from '@/src/modules/shared/components/ui/Button'
+import { Separator } from '@/src/modules/shared/components/ui/Separator'
 import { Tooltip } from './ui/Tooltip'
 
 export default function Navbar({ items }: { items: NavbarItem[] }) {

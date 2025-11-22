@@ -3,8 +3,8 @@
 import { format, parseISO } from 'date-fns'
 import Link from 'next/link'
 import type { Education } from '@/src/lib/types'
-import { Avatar } from '@/src/modules/shared/components/ui/Avatar'
-import { Card } from '@/src/modules/shared/components/ui/Card'
+import { Avatar } from './ui/Avatar'
+import { Card } from './ui/Card'
 
 interface EducationCardProps {
   education: Education
