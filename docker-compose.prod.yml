@@ -1,0 +1,32 @@
+services:
+  mvacoimbra-web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: mvacoimbra-web
+    restart: unless-stopped
+    ports:
+      - "3000"
+    volumes:
+      - ./src/modules/payload/data:/app/data
+      - ./src/modules/payload/media:/app/media
+    env_file:
+      - .env
+    environment:
+      - DATABASE_URI=file:/app/data/portfolio.db
+      - PAYLOAD_SECRET=${PAYLOAD_SECRET}
+      - NEXT_PUBLIC_SERVER_URL=https://mvacoimbra.dev.br
+    networks:
+      - traefik
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.mvacoimbra.rule=Host(`mvacoimbra.dev.br`) || Host(`mvacoimbra.dev`)"
+      - "traefik.http.routers.mvacoimbra.entrypoints=websecure"
+      - "traefik.http.routers.mvacoimbra.tls=true"
+      - "traefik.http.routers.mvacoimbra.tls.certresolver=cloudflare"
+      - "traefik.http.services.mvacoimbra.loadbalancer.server.port=3000"
+
+networks:
+  traefik:
+    external: true
+
