@@ -162,14 +162,43 @@ scp root@147.93.9.133:/root/www/mvacoimbra.dev/src/modules/payload/data/portfoli
 
 ### Run a Payload migration on the VPS
 
+The runner image has only `node server.js` — no pnpm/source. Run migrations via a one-off Node container that bind-mounts the repo:
+
 ```bash
-ssh root@147.93.9.133 "
-  docker exec -it mvacoimbra-web-ssw0c4ks8cwgcs448ow888o0 \
-    sh -c 'cd /app && pnpm payload migrate'
-"
+ssh root@147.93.9.133 '
+  set -e
+  cd /root/www/mvacoimbra.dev/src/modules/payload/data
+  cp portfolio.db portfolio.db.bak.pre-migrate.$(date +%Y%m%d-%H%M%S)
+
+  SECRET=$(grep "^PAYLOAD_SECRET=" /data/coolify/services/ssw0c4ks8cwgcs448ow888o0/.env | cut -d= -f2-)
+
+  cd /root/www/mvacoimbra.dev
+  docker run --rm -i \
+    -v /root/www/mvacoimbra.dev:/app \
+    -w /app \
+    -e CI=true \
+    -e DATABASE_URI=file:/app/src/modules/payload/data/portfolio.db \
+    -e PAYLOAD_SECRET="$SECRET" \
+    -e NODE_ENV=production \
+    node:22.17.0-alpine \
+    sh -c "corepack enable && corepack prepare pnpm@10.32.1 --activate >/dev/null 2>&1 && pnpm install --frozen-lockfile >/dev/null && echo y | pnpm payload migrate"
+'
 ```
 
-If the runner image doesn't have pnpm/source, run the migration during build instead (extend the Dockerfile build stage), or run from the local repo against a copy of the prod DB.
+Notes:
+- `echo y |` accepts the "It looks like you ran Payload in dev mode" warning — Payload prints this when the existing schema was originally created via `push: true`. Migrations preserve data via `INSERT INTO _locales SELECT ... FROM <old>` before dropping old columns.
+- If the host `node_modules` was built for a different platform/libc (e.g. previously built on Debian-glibc), `rm -rf node_modules` first — alpine is musl-libc and sharp/binary modules need to be reinstalled.
+
+⛔ **AFTER any one-off container that touches the data volume, fix ownership.** The runtime container uses `nextjs` (uid 1001) — the standalone Next.js Dockerfile creates this user. If `portfolio.db` ends up `root:root` after a migration container, the runtime can't write to it and login (`loginAttempts` update) fails with **`attempt to write a readonly database`**:
+
+```bash
+ssh root@147.93.9.133 '
+  chown -R 1001:1001 /root/www/mvacoimbra.dev/src/modules/payload/data \
+                     /root/www/mvacoimbra.dev/src/modules/payload/media
+  chmod 644 /root/www/mvacoimbra.dev/src/modules/payload/data/portfolio.db
+  docker restart mvacoimbra-web-ssw0c4ks8cwgcs448ow888o0
+'
+```
 
 ## Coolify API Operations
 
