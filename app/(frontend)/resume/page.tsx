@@ -8,6 +8,9 @@ import {
 } from '@/src/lib/fetch-data'
 import { PrintButton } from '@/src/modules/shared/components/PrintButton'
 
+// Revalidate the page every 60 seconds
+export const revalidate = 60
+
 const formatDate = (dateString: string) => {
   if (!dateString) return ''
   try {

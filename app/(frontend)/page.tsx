@@ -6,6 +6,9 @@ import {
   getSkills,
   getWorkExperience,
 } from '@/src/lib/fetch-data'
+
+// Revalidate the page every 60 seconds
+export const revalidate = 60
 import { EducationCard } from '@/src/modules/shared/components/EducationCard'
 import BlurFade from '@/src/modules/shared/components/magicui/BlurFade'
 import BlurFadeText from '@/src/modules/shared/components/magicui/BlurFadeText'

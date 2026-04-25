@@ -14,6 +14,14 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'avatars.githubusercontent.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'mvacoimbra.dev.br',
+      },
+      {
+        protocol: 'https',
+        hostname: 'mvacoimbra.dev',
+      },
     ],
   },
   webpack: (webpackConfig) => {
