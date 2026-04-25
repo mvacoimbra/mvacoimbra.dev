@@ -4,7 +4,11 @@ import { setRequestLocale } from 'next-intl/server'
 import { Inter as FontSans } from 'next/font/google'
 import { notFound } from 'next/navigation'
 import { type Locale, routing } from '@/src/i18n/routing'
-import { getNavbarItems, getProfile } from '@/src/lib/fetch-data'
+import {
+  getNavbarItems,
+  getOpenGraph,
+  getProfile,
+} from '@/src/lib/fetch-data'
 import { Providers } from '@/src/lib/providers'
 import { cn } from '@/src/lib/utils'
 import Navbar from '@/src/modules/shared/components/Navbar'
@@ -33,27 +37,30 @@ export async function generateMetadata({
   const safeLocale = (
     routing.locales.includes(locale as Locale) ? locale : 'en'
   ) as Locale
-  const profile = await getProfile(safeLocale)
+  const [profile, og] = await Promise.all([
+    getProfile(safeLocale),
+    getOpenGraph(safeLocale),
+  ])
   return {
     metadataBase: new URL('https://mvacoimbra.dev.br'),
     title: {
       default: 'mvacoimbra',
       template: `%s | ${profile.name}`,
     },
-    description: profile.description,
+    description: og.description,
     openGraph: {
-      title: profile.name,
-      description: profile.description,
+      title: og.title,
+      description: og.description,
       url: 'https://mvacoimbra.dev.br',
       siteName: `${profile.name} portfolio`,
       locale: OG_LOCALE[locale] ?? 'en_US',
       type: 'website',
       images: [
         {
-          url: profile.avatarUrl,
-          width: 800,
-          height: 600,
-          alt: profile.name,
+          url: og.imageUrl,
+          width: 1200,
+          height: 630,
+          alt: og.title,
         },
       ],
     },
@@ -69,9 +76,10 @@ export async function generateMetadata({
       },
     },
     twitter: {
-      title: profile.name,
+      title: og.title,
+      description: og.description,
       card: 'summary_large_image',
-      images: [profile.avatarUrl],
+      images: [og.imageUrl],
     },
     verification: {
       google: '',

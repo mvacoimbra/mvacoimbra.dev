@@ -5,6 +5,7 @@ import { getPayloadClient } from './payload-client'
 import type {
   Education as EducationType,
   NavbarItem,
+  OpenGraph as OpenGraphType,
   Profile as ProfileType,
   Project as ProjectType,
   Skill as SkillType,
@@ -38,6 +39,21 @@ export async function getProfile(locale: Locale): Promise<ProfileType> {
       url: link.url,
       icon: link.icon || undefined,
     })),
+  }
+}
+
+export async function getOpenGraph(locale: Locale): Promise<OpenGraphType> {
+  const payload = await getPayloadClient()
+  const og = await payload.findGlobal({
+    slug: 'open-graph',
+    locale,
+    fallbackLocale: 'en',
+  })
+
+  return {
+    title: og.title,
+    description: og.description,
+    imageUrl: getMediaUrl(og.image),
   }
 }
 

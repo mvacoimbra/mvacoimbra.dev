@@ -96,9 +96,11 @@ export interface Config {
   };
   globals: {
     profile: Profile;
+    'open-graph': OpenGraph;
   };
   globalsSelect: {
     profile: ProfileSelect<false> | ProfileSelect<true>;
+    'open-graph': OpenGraphSelect<false> | OpenGraphSelect<true>;
   };
   locale: 'en' | 'pt-BR';
   user: User & {
@@ -523,6 +525,18 @@ export interface Profile {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "open-graph".
+ */
+export interface OpenGraph {
+  id: number;
+  title: string;
+  description: string;
+  image: number | Media;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "profile_select".
  */
 export interface ProfileSelect<T extends boolean = true> {
@@ -538,6 +552,18 @@ export interface ProfileSelect<T extends boolean = true> {
         icon?: T;
         id?: T;
       };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "open-graph_select".
+ */
+export interface OpenGraphSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  image?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

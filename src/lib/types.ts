@@ -64,3 +64,9 @@ export type Profile = {
     icon?: string
   }>
 }
+
+export type OpenGraph = {
+  title: string
+  description: string
+  imageUrl: string
+}

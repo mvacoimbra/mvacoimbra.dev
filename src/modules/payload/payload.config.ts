@@ -12,6 +12,7 @@ import { Projects } from './collections/Projects'
 import { Skills } from './collections/Skills'
 import { Users } from './collections/Users'
 import { Work } from './collections/Work'
+import { OpenGraph } from './globals/OpenGraph'
 import { Profile } from './globals/Profile'
 
 const filename = fileURLToPath(import.meta.url)
@@ -25,7 +26,7 @@ export default buildConfig({
     },
   },
   collections: [Users, Media, Projects, Work, Education, Skills],
-  globals: [Profile],
+  globals: [Profile, OpenGraph],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   localization: {
