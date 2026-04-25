@@ -1,7 +1,9 @@
 'use client'
 
-import { format, parseISO } from 'date-fns'
+import { useLocale, useTranslations } from 'next-intl'
 import Link from 'next/link'
+import type { Locale } from '@/src/i18n/routing'
+import { formatMonthYear } from '@/src/lib/date'
 import type { Education } from '@/src/lib/types'
 import { Avatar } from './ui/Avatar'
 import { Card } from './ui/Card'
@@ -10,18 +12,13 @@ interface EducationCardProps {
   education: Education
 }
 
-const formatDate = (dateString: string) => {
-  if (!dateString) return ''
-  try {
-    if (dateString.toLowerCase() === 'present') return 'Present'
-    const date = parseISO(dateString)
-    return format(date, 'MMM yyyy')
-  } catch (_e) {
-    return dateString
-  }
-}
-
 export const EducationCard = ({ education }: EducationCardProps) => {
+  const locale = useLocale() as Locale
+  const t = useTranslations('card')
+  const present = t('present')
+  const formatDate = (d: string) =>
+    d?.toLowerCase() === 'present' ? present : formatMonthYear(d, locale)
+
   return (
     <Card.Root className="flex-row gap-4 border-none shadow-none bg-transparent overflow-hidden">
       {/* Logo Column */}
@@ -64,7 +61,7 @@ export const EducationCard = ({ education }: EducationCardProps) => {
               </h4>
               <div className="text-xs text-muted-foreground mt-1">
                 {formatDate(education.start)} -{' '}
-                {education.end ? formatDate(education.end) : 'Present'}
+                {education.end ? formatDate(education.end) : present}
               </div>
             </div>
           </div>

@@ -1,5 +1,7 @@
-import { format, parseISO } from 'date-fns'
 import { DynamicIcon } from 'lucide-react/dynamic'
+import { getTranslations, setRequestLocale } from 'next-intl/server'
+import type { Locale } from '@/src/i18n/routing'
+import { formatMonthYear } from '@/src/lib/date'
 import {
   getEducation,
   getProfile,
@@ -11,17 +13,6 @@ import { PrintButton } from '@/src/modules/shared/components/PrintButton'
 // Revalidate the page every 60 seconds
 export const revalidate = 60
 
-const formatDate = (dateString: string) => {
-  if (!dateString) return ''
-  try {
-    if (dateString.toLowerCase() === 'present') return 'present'
-    const date = parseISO(dateString)
-    return format(date, 'MM/yyyy')
-  } catch (_e) {
-    return dateString
-  }
-}
-
 const SectionHeader = ({ children }: { children: React.ReactNode }) => (
   <h2 className="text-xl font-bold mt-6 mb-4 text-red-900 dark:text-red-400 print:text-red-900 flex items-center gap-1 font-mono">
     <span>{'<'}</span>
@@ -30,12 +21,26 @@ const SectionHeader = ({ children }: { children: React.ReactNode }) => (
   </h2>
 )
 
-export default async function ResumePage() {
+export default async function ResumePage({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}) {
+  const { locale } = await params
+  setRequestLocale(locale)
+  const t = await getTranslations('resume')
+  const present = t('present')
+  const fmt = (d: string) =>
+    d?.toLowerCase() === 'present'
+      ? present
+      : formatMonthYear(d, locale as Locale)
+
+  const l = locale as Locale
   const [profile, work, education, skills] = await Promise.all([
-    getProfile(),
-    getWorkExperience(),
-    getEducation(),
-    getSkills(),
+    getProfile(l),
+    getWorkExperience(l),
+    getEducation(l),
+    getSkills(l),
   ])
 
   return (
@@ -70,7 +75,7 @@ export default async function ResumePage() {
 
         {/* Skills */}
         <section>
-          <SectionHeader>Skills</SectionHeader>
+          <SectionHeader>{t('skills')}</SectionHeader>
           <div className="text-sm leading-relaxed">
             {skills.map((skill, index) => (
               <span key={skill.name}>
@@ -87,7 +92,7 @@ export default async function ResumePage() {
 
         {/* Experience */}
         <section>
-          <SectionHeader>Experience</SectionHeader>
+          <SectionHeader>{t('experience')}</SectionHeader>
           <div className="space-y-8">
             {work.map((job) => (
               <div key={job.companyName}>
@@ -102,22 +107,14 @@ export default async function ResumePage() {
                         {job.roles.length > 1 ? `- ${role.title}` : ''}
                       </h3>
                       <span className="text-sm shrink-0 ml-4">
-                        {formatDate(role.start)} -{' '}
-                        {role.end ? formatDate(role.end) : 'present'}
+                        {fmt(role.start)} - {role.end ? fmt(role.end) : present}
                       </span>
                     </div>
 
-                    {/* Single Role title if company has multiple roles is handled above, 
-                        but if it's the only role, maybe show title separately or combine?
-                        The design shows "Moz - SEO (Bunch Software)".
-                        Let's stick to "Company" as main, then role details.
-                    */}
                     {job.roles.length === 1 && (
                       <div className="font-bold text-sm mb-2 hidden">
                         {role.title}
                       </div>
-                      // The design merges Company and Role or shows Role (Company).
-                      // My data is grouped by company.
                     )}
 
                     <div className="grid grid-cols-1 gap-4">
@@ -153,21 +150,19 @@ export default async function ResumePage() {
 
         {/* Education */}
         <section>
-          <SectionHeader>Education</SectionHeader>
+          <SectionHeader>{t('education')}</SectionHeader>
           <div className="space-y-4">
             {education.map((edu) => (
               <div key={edu.school} className="break-inside-avoid">
                 <div className="flex justify-between items-baseline">
                   <h3 className="font-bold">{edu.degree}</h3>
                   <span className="text-sm">
-                    {formatDate(edu.start)} -{' '}
-                    {edu.end ? formatDate(edu.end) : 'present'}
+                    {fmt(edu.start)} - {edu.end ? fmt(edu.end) : present}
                   </span>
                 </div>
                 <div className="text-sm underline decoration-1 underline-offset-4 mb-1">
                   {edu.school}
                 </div>
-                {/* Description if any */}
               </div>
             ))}
           </div>
@@ -175,7 +170,7 @@ export default async function ResumePage() {
 
         {/* About Me */}
         <section>
-          <SectionHeader>AboutMe</SectionHeader>
+          <SectionHeader>{t('aboutMe')}</SectionHeader>
           <div className="text-sm leading-relaxed text-justify">
             {profile.about}
           </div>

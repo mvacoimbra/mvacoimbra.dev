@@ -28,6 +28,11 @@ export default buildConfig({
   globals: [Profile],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
+  localization: {
+    locales: ['en', 'pt-BR'],
+    defaultLocale: 'en',
+    fallback: true,
+  },
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },
@@ -35,6 +40,8 @@ export default buildConfig({
     client: {
       url: process.env.DATABASE_URI || '',
     },
+    push: false,
+    migrationDir: path.resolve(dirname, 'migrations'),
   }),
   sharp,
   plugins: [

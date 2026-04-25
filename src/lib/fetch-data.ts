@@ -1,4 +1,5 @@
 import type { IconName } from 'lucide-react/dynamic'
+import type { Locale } from '@/src/i18n/routing'
 import type { Media } from '@/src/modules/payload/payload-types'
 import { getPayloadClient } from './payload-client'
 import type {
@@ -10,20 +11,21 @@ import type {
   WorkExperience as WorkExperienceType,
 } from './types'
 
-// Helper to get URL from Media
 const getMediaUrl = (
   media: Media | number | string | null | undefined,
 ): string => {
   if (!media) return ''
   if (typeof media === 'string') return media
-  if (typeof media === 'number') return '' // Handle number case (ID reference) if needed, or fetch it. For now return empty string or placeholder.
+  if (typeof media === 'number') return ''
   return media.url || ''
 }
 
-export async function getProfile(): Promise<ProfileType> {
+export async function getProfile(locale: Locale): Promise<ProfileType> {
   const payload = await getPayloadClient()
   const profile = await payload.findGlobal({
     slug: 'profile',
+    locale,
+    fallbackLocale: 'en',
   })
 
   return {
@@ -39,10 +41,12 @@ export async function getProfile(): Promise<ProfileType> {
   }
 }
 
-export async function getNavbarItems(): Promise<NavbarItem[]> {
+export async function getNavbarItems(locale: Locale): Promise<NavbarItem[]> {
   const payload = await getPayloadClient()
   const profile = await payload.findGlobal({
     slug: 'profile',
+    locale,
+    fallbackLocale: 'en',
   })
 
   const socialLinks: NavbarItem[] = (profile.socialLinks || []).map((link) => ({
@@ -56,12 +60,12 @@ export async function getNavbarItems(): Promise<NavbarItem[]> {
     {
       href: '/resume',
       iconName: 'file-text',
-      label: 'Resume',
+      labelKey: 'navbar.resume',
     },
     {
       href: '/',
       iconName: 'home',
-      label: 'Home',
+      labelKey: 'navbar.home',
     },
     {
       separator: true,
@@ -70,7 +74,7 @@ export async function getNavbarItems(): Promise<NavbarItem[]> {
   ]
 }
 
-export async function getSkills(): Promise<SkillType[]> {
+export async function getSkills(_locale: Locale): Promise<SkillType[]> {
   const payload = await getPayloadClient()
   const { docs } = await payload.find({
     collection: 'skills',
@@ -84,12 +88,14 @@ export async function getSkills(): Promise<SkillType[]> {
   }))
 }
 
-export async function getProjects(): Promise<ProjectType[]> {
+export async function getProjects(locale: Locale): Promise<ProjectType[]> {
   const payload = await getPayloadClient()
   const { docs } = await payload.find({
     collection: 'projects',
     sort: 'order',
     limit: 100,
+    locale,
+    fallbackLocale: 'en',
   })
 
   return docs.map((doc) => ({
@@ -103,17 +109,21 @@ export async function getProjects(): Promise<ProjectType[]> {
     links: (doc.links || []).map((link) => ({
       type: link.type as 'website' | 'source',
       href: link.url,
-      icon: undefined, // We can map icon based on type if needed, but type handles it in component usually
+      icon: undefined,
     })),
   }))
 }
 
-export async function getWorkExperience(): Promise<WorkExperienceType[]> {
+export async function getWorkExperience(
+  locale: Locale,
+): Promise<WorkExperienceType[]> {
   const payload = await getPayloadClient()
   const { docs } = await payload.find({
     collection: 'work',
-    sort: 'order', // We might want to sort by date, but let's stick to order field for manual control or fetch logic
+    sort: 'order',
     limit: 100,
+    locale,
+    fallbackLocale: 'en',
   })
 
   return docs.map((doc) => ({
@@ -132,12 +142,14 @@ export async function getWorkExperience(): Promise<WorkExperienceType[]> {
   }))
 }
 
-export async function getEducation(): Promise<EducationType[]> {
+export async function getEducation(locale: Locale): Promise<EducationType[]> {
   const payload = await getPayloadClient()
   const { docs } = await payload.find({
     collection: 'education',
     sort: 'order',
     limit: 100,
+    locale,
+    fallbackLocale: 'en',
   })
 
   return docs.map((doc) => ({

@@ -1,18 +1,39 @@
 import type { Metadata } from 'next'
+import { hasLocale, NextIntlClientProvider } from 'next-intl'
+import { setRequestLocale } from 'next-intl/server'
 import { Inter as FontSans } from 'next/font/google'
+import { notFound } from 'next/navigation'
+import { type Locale, routing } from '@/src/i18n/routing'
+import { getNavbarItems, getProfile } from '@/src/lib/fetch-data'
 import { Providers } from '@/src/lib/providers'
 import { cn } from '@/src/lib/utils'
 import Navbar from '@/src/modules/shared/components/Navbar'
-import './globals.css'
-import { getNavbarItems, getProfile } from '@/src/lib/fetch-data'
+import '../globals.css'
 
 const fontSans = FontSans({
   subsets: ['latin'],
   variable: '--font-sans',
 })
 
-export async function generateMetadata(): Promise<Metadata> {
-  const profile = await getProfile()
+const OG_LOCALE: Record<string, string> = {
+  en: 'en_US',
+  'pt-BR': 'pt_BR',
+}
+
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }))
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}): Promise<Metadata> {
+  const { locale } = await params
+  const safeLocale = (
+    routing.locales.includes(locale as Locale) ? locale : 'en'
+  ) as Locale
+  const profile = await getProfile(safeLocale)
   return {
     metadataBase: new URL('https://mvacoimbra.dev.br'),
     title: {
@@ -25,7 +46,7 @@ export async function generateMetadata(): Promise<Metadata> {
       description: profile.description,
       url: 'https://mvacoimbra.dev.br',
       siteName: `${profile.name} portfolio`,
-      locale: 'en_US',
+      locale: OG_LOCALE[locale] ?? 'en_US',
       type: 'website',
       images: [
         {
@@ -93,23 +114,33 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function RootLayout({
   children,
+  params,
 }: Readonly<{
   children: React.ReactNode
+  params: Promise<{ locale: string }>
 }>) {
-  const navbarItems = await getNavbarItems()
+  const { locale } = await params
+  if (!hasLocale(routing.locales, locale)) {
+    notFound()
+  }
+  setRequestLocale(locale)
+
+  const navbarItems = await getNavbarItems(locale as Locale)
 
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang={locale} suppressHydrationWarning>
       <body
         className={cn(
           'min-h-screen bg-background font-sans antialiased',
           fontSans.variable,
         )}
       >
-        <Providers>
-          {children}
-          <Navbar items={navbarItems} />
-        </Providers>
+        <NextIntlClientProvider>
+          <Providers>
+            {children}
+            <Navbar items={navbarItems} />
+          </Providers>
+        </NextIntlClientProvider>
       </body>
     </html>
   )

@@ -16,12 +16,14 @@ export const Profile: GlobalConfig = {
       label: 'Short Bio',
       type: 'text',
       required: true,
+      localized: true,
     },
     {
       name: 'about',
       label: 'About Me (Markdown)',
       type: 'textarea',
       required: true,
+      localized: true,
     },
     {
       name: 'avatar',

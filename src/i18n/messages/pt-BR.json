@@ -1,0 +1,49 @@
+{
+  "home": {
+    "hero": {
+      "greeting": "Olá, sou {name} 👋"
+    },
+    "about": {
+      "title": "Sobre"
+    },
+    "work": {
+      "title": "Experiência Profissional"
+    },
+    "education": {
+      "title": "Educação"
+    },
+    "skills": {
+      "title": "Habilidades"
+    },
+    "projects": {
+      "tag": "Meus Projetos",
+      "heading": "Veja meus trabalhos recentes",
+      "body": "Trabalhei em uma variedade de projetos, de sites simples a aplicações web complexas. Aqui estão alguns dos meus favoritos."
+    },
+    "contact": {
+      "tag": "Contato",
+      "heading": "Entre em Contato",
+      "body": "E aí! Acabei de te conhecer, e isso é loucura, mas aqui está meu <link>linkedin</link>, então me chama!"
+    }
+  },
+  "resume": {
+    "skills": "Habilidades",
+    "experience": "Experiência",
+    "education": "Educação",
+    "aboutMe": "SobreMim",
+    "present": "Presente"
+  },
+  "navbar": {
+    "home": "Início",
+    "resume": "Currículo",
+    "theme": "Tema",
+    "localeSwitcher": "Idioma"
+  },
+  "localeSwitcher": {
+    "english": "English",
+    "portuguese": "Português"
+  },
+  "card": {
+    "present": "Presente"
+  }
+}

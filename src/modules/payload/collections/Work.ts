@@ -32,6 +32,7 @@ export const Work: CollectionConfig = {
           name: 'title',
           type: 'text',
           required: true,
+          localized: true,
         },
         {
           name: 'start',
@@ -58,6 +59,7 @@ export const Work: CollectionConfig = {
           name: 'description',
           type: 'textarea',
           label: 'Description (Markdown)',
+          localized: true,
         },
         {
           name: 'technologies',

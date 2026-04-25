@@ -2,18 +2,21 @@
 
 import { LinkIcon } from 'lucide-react'
 import { DynamicIcon } from 'lucide-react/dynamic'
+import { useTranslations } from 'next-intl'
 import Image from 'next/image'
-import Link from 'next/link'
 import * as _ from 'radashi'
 import type { NavbarItem } from '@/src/lib/types'
 import { cn } from '@/src/lib/utils'
 import { Dock } from './magicui/Dock'
 import { ThemeToggle } from './ThemeToggle'
+import { Link } from '@/src/i18n/navigation'
 import { buttonVariants } from '@/src/modules/shared/components/ui/Button'
 import { Separator } from '@/src/modules/shared/components/ui/Separator'
 import { Tooltip } from './ui/Tooltip'
+import { LocaleSwitcher } from './LocaleSwitcher'
 
 export default function Navbar({ items }: { items: NavbarItem[] }) {
+  const t = useTranslations()
   return (
     <div className="pointer-events-none fixed inset-x-0 bottom-0 z-30 mx-auto mb-4 flex origin-bottom h-full max-h-14 print:hidden">
       <div className="fixed bottom-0 inset-x-0 h-16 w-full bg-background to-transparent backdrop-blur-lg [-webkit-mask-image:linear-gradient(to_top,black,transparent)] dark:bg-background"></div>
@@ -45,7 +48,11 @@ export default function Navbar({ items }: { items: NavbarItem[] }) {
                     ) : item.customIconUrl ? (
                       <Image
                         src={item.customIconUrl}
-                        alt={item.label ?? `Image: ${item.href}`}
+                        alt={
+                          item.labelKey
+                            ? t(item.labelKey)
+                            : (item.label ?? `Image: ${item.href}`)
+                        }
                         className="size-4"
                       />
                     ) : (
@@ -54,7 +61,7 @@ export default function Navbar({ items }: { items: NavbarItem[] }) {
                   </Link>
                 </Tooltip.Trigger>
                 <Tooltip.Content>
-                  <p>{item.label}</p>
+                  <p>{item.labelKey ? t(item.labelKey) : item.label}</p>
                 </Tooltip.Content>
               </Tooltip.Root>
             </Dock.Icon>
@@ -62,12 +69,15 @@ export default function Navbar({ items }: { items: NavbarItem[] }) {
         })}
         <Separator orientation="vertical" className="h-full py-2" />
         <Dock.Icon>
+          <LocaleSwitcher />
+        </Dock.Icon>
+        <Dock.Icon>
           <Tooltip.Root>
             <Tooltip.Trigger asChild>
               <ThemeToggle />
             </Tooltip.Trigger>
             <Tooltip.Content>
-              <p>Theme</p>
+              <p>{t('navbar.theme')}</p>
             </Tooltip.Content>
           </Tooltip.Root>
         </Dock.Icon>

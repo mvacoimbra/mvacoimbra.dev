@@ -12,6 +12,7 @@ export type NavbarItem = {
   separator?: boolean
   iconName?: IconName
   label?: string
+  labelKey?: string
   customIconUrl?: string
 }
 

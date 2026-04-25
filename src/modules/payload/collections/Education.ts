@@ -28,6 +28,7 @@ export const Education: CollectionConfig = {
       name: 'degree',
       type: 'text',
       required: true,
+      localized: true,
     },
     {
       name: 'start',

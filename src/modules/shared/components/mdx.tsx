@@ -30,7 +30,10 @@ function CustomLink(props: React.ComponentProps<'a'>) {
 
   if (href?.startsWith('/')) {
     return (
-      <Link href={href} {...(props as Omit<React.ComponentProps<typeof Link>, 'href'>)}>
+      <Link
+        href={href}
+        {...(props as Omit<React.ComponentProps<typeof Link>, 'href'>)}
+      >
         {props.children}
       </Link>
     )

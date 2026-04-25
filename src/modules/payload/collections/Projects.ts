@@ -13,16 +13,19 @@ export const Projects: CollectionConfig = {
       name: 'title',
       type: 'text',
       required: true,
+      localized: true,
     },
     {
       name: 'subtitle',
       type: 'text',
+      localized: true,
     },
     {
       name: 'description',
       type: 'textarea',
       label: 'Description (Markdown)',
       required: true,
+      localized: true,
     },
     {
       name: 'technologies',

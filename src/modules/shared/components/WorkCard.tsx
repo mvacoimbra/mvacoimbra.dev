@@ -1,7 +1,9 @@
 'use client'
 
-import { format, parseISO } from 'date-fns'
+import { useLocale, useTranslations } from 'next-intl'
 import Link from 'next/link'
+import type { Locale } from '@/src/i18n/routing'
+import { formatMonthYear } from '@/src/lib/date'
 import type { WorkExperience, WorkRole } from '@/src/lib/types'
 import { Avatar } from '@/src/modules/shared/components/ui/Avatar'
 import { Card } from '@/src/modules/shared/components/ui/Card'
@@ -52,7 +54,7 @@ export const WorkCard = ({ experience, isLast }: WorkCardProps) => {
         {/* Roles */}
         <div className="flex flex-col gap-6">
           {experience.roles.map((role, index) => (
-             <RoleItem key={`${role.title}-${index}`} role={role} />
+            <RoleItem key={`${role.title}-${index}`} role={role} />
           ))}
         </div>
       </div>
@@ -60,23 +62,15 @@ export const WorkCard = ({ experience, isLast }: WorkCardProps) => {
   )
 }
 
-const formatDate = (dateString: string) => {
-  if (!dateString) return ''
-  try {
-    // Handle 'Present' case if it's passed as string or empty
-    if (dateString.toLowerCase() === 'present') return 'Present'
-
-    // Parse ISO string (YYYY-MM-DD or YYYY-MM)
-    const date = parseISO(dateString)
-    return format(date, 'MMM yyyy')
-  } catch (_e) {
-    return dateString
-  }
-}
-
 import { Badge } from '@/src/modules/shared/components/ui/Badge'
 
 const RoleItem = ({ role }: { role: WorkRole }) => {
+  const locale = useLocale() as Locale
+  const t = useTranslations('card')
+  const present = t('present')
+  const formatDate = (d: string) =>
+    d?.toLowerCase() === 'present' ? present : formatMonthYear(d, locale)
+
   return (
     <div className="relative">
       <div className="flex flex-col gap-1 group">
@@ -87,7 +81,7 @@ const RoleItem = ({ role }: { role: WorkRole }) => {
             </h4>
             <div className="text-xs text-muted-foreground mt-1">
               {formatDate(role.start)} -{' '}
-              {role.end ? formatDate(role.end) : 'Present'}
+              {role.end ? formatDate(role.end) : present}
             </div>
           </div>
         </div>

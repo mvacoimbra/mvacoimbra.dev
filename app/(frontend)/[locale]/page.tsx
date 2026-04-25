@@ -1,4 +1,6 @@
+import { getTranslations, setRequestLocale } from 'next-intl/server'
 import Link from 'next/link'
+import type { Locale } from '@/src/i18n/routing'
 import {
   getEducation,
   getProfile,
@@ -23,13 +25,22 @@ import { WorkCard } from '@/src/modules/shared/components/WorkCard'
 
 const BLUR_FADE_DELAY = 0.04
 
-export default async function Page() {
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}) {
+  const { locale } = await params
+  setRequestLocale(locale)
+  const t = await getTranslations('home')
+  const l = locale as Locale
+
   const [PROFILE, WORK, EDUCATION, SKILLS, PROJECTS] = await Promise.all([
-    getProfile(),
-    getWorkExperience(),
-    getEducation(),
-    getSkills(),
-    getProjects(),
+    getProfile(l),
+    getWorkExperience(l),
+    getEducation(l),
+    getSkills(l),
+    getProjects(l),
   ])
 
   return (
@@ -42,7 +53,7 @@ export default async function Page() {
                 delay={BLUR_FADE_DELAY}
                 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none"
                 yOffset={8}
-                text={`Hi, I'm ${PROFILE.name} 👋`}
+                text={t('hero.greeting', { name: PROFILE.name })}
               />
               <BlurFadeText
                 className="max-w-[600px] md:text-xl"
@@ -68,7 +79,7 @@ export default async function Page() {
       </section>
       <section id="about">
         <BlurFade delay={BLUR_FADE_DELAY * 3}>
-          <h2 className="text-xl font-bold">About</h2>
+          <h2 className="text-xl font-bold">{t('about.title')}</h2>
         </BlurFade>
         <BlurFade delay={BLUR_FADE_DELAY * 4}>
           <Markdown className="prose max-w-full text-pretty font-sans text-sm text-muted-foreground dark:prose-invert">
@@ -79,7 +90,7 @@ export default async function Page() {
       <section id="work">
         <div className="flex min-h-0 flex-col gap-y-3">
           <BlurFade delay={BLUR_FADE_DELAY * 5}>
-            <h2 className="text-xl font-bold">Work Experience</h2>
+            <h2 className="text-xl font-bold">{t('work.title')}</h2>
           </BlurFade>
           {WORK.map((work, id) => (
             <BlurFade
@@ -94,7 +105,7 @@ export default async function Page() {
       <section id="education">
         <div className="flex min-h-0 flex-col gap-y-3">
           <BlurFade delay={BLUR_FADE_DELAY * 7}>
-            <h2 className="text-xl font-bold">Education</h2>
+            <h2 className="text-xl font-bold">{t('education.title')}</h2>
           </BlurFade>
           {EDUCATION.map((education, id) => (
             <BlurFade
@@ -109,7 +120,7 @@ export default async function Page() {
       <section id="skills">
         <div className="flex min-h-0 flex-col gap-y-3">
           <BlurFade delay={BLUR_FADE_DELAY * 9}>
-            <h2 className="text-xl font-bold">Skills</h2>
+            <h2 className="text-xl font-bold">{t('skills.title')}</h2>
           </BlurFade>
           <div className="flex flex-wrap gap-1">
             {SKILLS.map((skill, id) => (
@@ -133,15 +144,13 @@ export default async function Page() {
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
                 <div className="inline-block rounded-lg bg-foreground text-background px-3 py-1 text-sm">
-                  My Projects
+                  {t('projects.tag')}
                 </div>
                 <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
-                  Check out my latest work
+                  {t('projects.heading')}
                 </h2>
                 <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  I&apos;ve worked on a variety of projects, from simple
-                  websites to complex web applications. Here are a few of my
-                  favorites.
+                  {t('projects.body')}
                 </p>
               </div>
             </div>
@@ -163,20 +172,22 @@ export default async function Page() {
           <BlurFade delay={BLUR_FADE_DELAY * 16}>
             <div className="space-y-3">
               <div className="inline-block rounded-lg bg-foreground text-background px-3 py-1 text-sm">
-                Contact
+                {t('contact.tag')}
               </div>
               <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
-                Get in Touch
+                {t('contact.heading')}
               </h2>
               <p className="mx-auto max-w-[600px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                Hey! I just met you, and this is crazy, but here's my{' '}
-                <Link
-                  href={'https://linkedin.com/in/mvacoimbra'}
-                  className="text-blue-500 hover:underline"
-                >
-                  linkedin
-                </Link>
-                , so dm me maybe.
+                {t.rich('contact.body', {
+                  link: (chunks) => (
+                    <Link
+                      href="https://linkedin.com/in/mvacoimbra"
+                      className="text-blue-500 hover:underline"
+                    >
+                      {chunks}
+                    </Link>
+                  ),
+                })}
               </p>
             </div>
           </BlurFade>
