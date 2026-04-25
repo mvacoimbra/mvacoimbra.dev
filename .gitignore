@@ -42,6 +42,17 @@ next-env.d.ts
 
 /media
 
+# SQLite
+*.db
+*.db.bak
+*.db.bak.*
+
+# Claude Code
+.claude/settings.local.json
+
+# CodeGraph
+.codegraph/
+
 # Playwright
 node_modules/
 /test-results/
