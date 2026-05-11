@@ -38,6 +38,7 @@ export async function getProfile(locale: Locale): Promise<ProfileType> {
       platform: link.platform,
       url: link.url,
       icon: link.icon || undefined,
+      displayLabel: link.displayLabel || undefined,
     })),
   }
 }

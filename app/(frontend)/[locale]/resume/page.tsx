@@ -67,7 +67,7 @@ export default async function ResumePage({
                   name={(link.icon as any) || 'link'}
                   className="size-4"
                 />
-                <span>{link.platform}</span>
+                <span>{link.displayLabel || link.platform}</span>
               </a>
             ))}
           </div>

@@ -516,6 +516,10 @@ export interface Profile {
     | {
         platform: string;
         url: string;
+        /**
+         * Overrides the label shown on the printed resume header. Navbar still uses Platform.
+         */
+        displayLabel?: string | null;
         icon?: string | null;
         id?: string | null;
       }[]
@@ -549,6 +553,7 @@ export interface ProfileSelect<T extends boolean = true> {
     | {
         platform?: T;
         url?: T;
+        displayLabel?: T;
         icon?: T;
         id?: T;
       };

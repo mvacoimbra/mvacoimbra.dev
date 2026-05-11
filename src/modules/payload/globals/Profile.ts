@@ -46,6 +46,15 @@ export const Profile: GlobalConfig = {
           required: true,
         },
         {
+          name: 'displayLabel',
+          type: 'text',
+          label: 'Resume Display Label (optional)',
+          admin: {
+            description:
+              'Overrides the label shown on the printed resume header. Navbar still uses Platform.',
+          },
+        },
+        {
           name: 'icon',
           type: 'text', // simplified for now, could be select
           label: 'Icon Name (lucide-react)',

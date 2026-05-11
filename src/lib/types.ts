@@ -62,6 +62,7 @@ export type Profile = {
     platform: string
     url: string
     icon?: string
+    displayLabel?: string
   }>
 }
 
