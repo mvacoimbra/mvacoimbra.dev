@@ -94,57 +94,81 @@ export default async function ResumePage({
         <section>
           <SectionHeader>{t('experience')}</SectionHeader>
           <div className="space-y-8">
-            {work.map((job) => (
-              <div key={job.companyName}>
-                {job.roles.map((role, roleIndex) => (
-                  <div
-                    key={roleIndex}
-                    className="mb-6 last:mb-0 break-inside-avoid"
-                  >
-                    <div className="flex justify-between items-baseline mb-2">
+            {work.map((job) => {
+              const isGrouped = job.roles.length > 1
+              const earliestStart = job.roles
+                .map((r) => r.start)
+                .sort()[0]
+              const hasOpenRole = job.roles.some((r) => !r.end)
+              const latestEnd = hasOpenRole
+                ? undefined
+                : job.roles
+                    .map((r) => r.end as string)
+                    .sort()
+                    .reverse()[0]
+
+              return (
+                <div key={job.companyName} className="break-inside-avoid-page">
+                  {isGrouped && (
+                    <div className="flex justify-between items-baseline mb-3">
                       <h3 className="font-bold text-base underline decoration-1 underline-offset-4">
-                        {job.companyName}{' '}
-                        {job.roles.length > 1 ? `- ${role.title}` : ''}
+                        {job.companyName}
                       </h3>
                       <span className="text-sm shrink-0 ml-4">
-                        {fmt(role.start)} - {role.end ? fmt(role.end) : present}
+                        {fmt(earliestStart)} -{' '}
+                        {latestEnd ? fmt(latestEnd) : present}
                       </span>
                     </div>
+                  )}
 
-                    {job.roles.length === 1 && (
-                      <div className="font-bold text-sm mb-2 hidden">
-                        {role.title}
-                      </div>
-                    )}
+                  <div className={isGrouped ? 'ml-4 space-y-5' : ''}>
+                    {job.roles.map((role, roleIndex) => (
+                      <div
+                        key={roleIndex}
+                        className="mb-6 last:mb-0 break-inside-avoid"
+                      >
+                        <div className="flex justify-between items-baseline mb-2">
+                          {isGrouped ? (
+                            <h4 className="font-bold text-sm">{role.title}</h4>
+                          ) : (
+                            <h3 className="font-bold text-base underline decoration-1 underline-offset-4">
+                              {job.companyName}
+                            </h3>
+                          )}
+                          <span className="text-sm shrink-0 ml-4">
+                            {fmt(role.start)} -{' '}
+                            {role.end ? fmt(role.end) : present}
+                          </span>
+                        </div>
 
-                    <div className="grid grid-cols-1 gap-4">
-                      {/* Technologies */}
-                      {role.technologies && role.technologies.length > 0 && (
-                        <div className="text-sm mb-2">
-                          <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-4 gap-y-1">
-                            {role.technologies.map((tech) => (
-                              <div
-                                key={tech}
-                                className="whitespace-nowrap overflow-hidden text-ellipsis"
-                              >
-                                <span className="mr-1">{'>'}</span> {tech}
+                        <div className="grid grid-cols-1 gap-4">
+                          {role.technologies && role.technologies.length > 0 && (
+                            <div className="text-sm mb-2">
+                              <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-4 gap-y-1">
+                                {role.technologies.map((tech) => (
+                                  <div
+                                    key={tech}
+                                    className="whitespace-nowrap overflow-hidden text-ellipsis"
+                                  >
+                                    <span className="mr-1">{'>'}</span> {tech}
+                                  </div>
+                                ))}
                               </div>
-                            ))}
+                            </div>
+                          )}
+
+                          <div className="text-sm space-y-2">
+                            <div className="text-sm text-justify whitespace-pre-line">
+                              {role.description}
+                            </div>
                           </div>
                         </div>
-                      )}
-
-                      <div className="text-sm space-y-2">
-                        {/* Description */}
-                        <div className="text-sm text-justify whitespace-pre-line">
-                          {role.description}
-                        </div>
                       </div>
-                    </div>
+                    ))}
                   </div>
-                ))}
-              </div>
-            ))}
+                </div>
+              )
+            })}
           </div>
         </section>
 
